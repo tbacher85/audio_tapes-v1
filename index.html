@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>THE RUE DU BAC TAPES</title>
 <style>
   :root {
@@ -10,7 +10,7 @@
     --panel: #12151c;
     --border: #2a313e;
     --ink: #dbe3e8;
-    --dim: #7c8897;
+    --dim: #7b8796;
     --amber: #ff8c3b;
     --red: #e63946;
     --phosphor: #6ee7b7;
@@ -22,12 +22,10 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    -webkit-tap-highlight-color: rgba(255, 140, 59, 0.2);
   }
 
   html, body {
-    min-height: 100dvh;
-    width: 100%;
+    min-height: 100vh;
     background: radial-gradient(circle at 50% 8%, #161b25 0%, var(--bg) 82%);
     color: var(--ink);
     font-family: var(--sans);
@@ -35,7 +33,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 12px;
+    padding: 16px;
     overflow-x: hidden;
   }
 
@@ -54,240 +52,91 @@
     z-index: 50;
   }
 
-  .jumpscare-flash {
-    position: fixed;
-    inset: 0;
-    background: radial-gradient(circle, rgba(230, 57, 70, 0.72) 0%, rgba(10, 2, 4, 0.97) 78%);
-    display: none;
-    align-items: center;
-    justify-content: center;
-    z-index: 90;
-    pointer-events: none;
-    padding: 24px;
-    text-align: center;
-  }
-
-  .jumpscare-flash.active {
-    display: flex;
-    animation: scareShake 1.25s ease-out;
-  }
-
-  .scare-word {
-    font-family: var(--mono);
-    font-size: clamp(24px, 7vw, 48px);
-    font-weight: bold;
-    color: #ffe5e8;
-    letter-spacing: 0.12em;
-    text-shadow: 0 0 28px #e63946;
-  }
-
-  @keyframes scareShake {
-    0% { transform: translate(-10px, 6px) scale(1.05); opacity: 1; }
-    15% { transform: translate(11px, -7px) scale(1.07); opacity: 1; }
-    30% { transform: translate(-8px, -5px) scale(1.04); opacity: 1; }
-    45% { transform: translate(9px, 5px) scale(1.05); opacity: 1; }
-    78% { transform: translate(0, 0) scale(1.01); opacity: 0.96; }
-    100% { transform: translate(0, 0) scale(1); opacity: 0; }
-  }
-
-  .ending-screen {
-    position: fixed;
-    inset: 0;
-    background: radial-gradient(circle at 50% 25%, rgba(120, 14, 24, 0.96) 0%, rgba(14, 3, 6, 0.99) 82%);
-    z-index: 85;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    overflow-y: auto;
-  }
-
-  .ending-screen.visible {
-    display: flex;
-  }
-
-  .ending-card {
-    width: 100%;
-    max-width: 680px;
-    background: rgba(24, 5, 9, 0.94);
-    border: 2px solid #e63946;
-    box-shadow: 0 0 60px rgba(230, 57, 70, 0.45), inset 0 0 36px rgba(0, 0, 0, 0.7);
-    border-radius: 10px;
-    padding: 24px 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-  }
-
-  .ending-tag {
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: 0.16em;
-    color: #ff8a93;
-  }
-
-  .ending-title {
-    font-family: var(--mono);
-    font-size: clamp(20px, 5vw, 26px);
-    color: #fff0f1;
-    letter-spacing: 0.06em;
-  }
-
-  .ending-audio-cue {
-    font-family: var(--mono);
-    font-size: 12px;
-    color: #ffb8be;
-    background: rgba(65, 8, 14, 0.85);
-    border-left: 3px solid #ff4d5a;
-    padding: 10px 12px;
-    border-radius: 4px;
-  }
-
-  .ending-body {
-    font-size: 15px;
-    line-height: 1.72;
-    color: #ffe8ea;
-  }
-
-  .ending-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 6px;
-  }
-
-  .ending-btn {
-    padding: 12px 18px;
-    min-height: 44px;
-    background: #3a0c12;
-    border: 1px solid #ff5c68;
-    border-radius: 6px;
-    color: #fff;
-    font-family: var(--mono);
-    font-size: 12px;
-    font-weight: bold;
-    letter-spacing: 0.08em;
-    cursor: pointer;
-  }
-
-  .ending-btn:hover {
-    background: #e63946;
-    color: #090405;
-  }
-
   .wrap {
     width: 100%;
-    max-width: 840px;
+    max-width: 820px;
     display: flex;
     flex-direction: column;
-    gap: 11px;
+    gap: 12px;
     position: relative;
     z-index: 2;
   }
 
-  .intro-card {
-    background: rgba(15, 18, 24, 0.97);
+  .header-box {
+    background: rgba(16, 19, 25, 0.95);
     border: 1px solid var(--border);
-    border-top: 3px solid var(--amber);
-    border-radius: 10px;
-    padding: 24px 20px;
-    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.88);
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
+    border-left: 4px solid var(--amber);
+    border-radius: 8px;
+    padding: 14px 16px;
+    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.72);
   }
 
-  .intro-tag {
+  .tag {
     font-family: var(--mono);
     font-size: 11px;
-    letter-spacing: 0.16em;
+    letter-spacing: 0.14em;
     color: var(--amber);
+    margin-bottom: 4px;
   }
 
-  .intro-title {
-    font-size: clamp(22px, 5vw, 28px);
+  .title {
+    font-size: 20px;
     font-weight: 700;
-    color: #f1f5f9;
+    margin-bottom: 5px;
   }
 
-  .intro-copy {
-    font-size: 14px;
-    line-height: 1.7;
-    color: #c8d2dc;
-  }
-
-  .start-btn {
-    align-self: flex-start;
-    margin-top: 4px;
-    padding: 13px 28px;
-    background: #211913;
-    border: 1px solid var(--amber);
-    border-radius: 6px;
-    color: var(--amber);
-    font-family: var(--mono);
-    font-size: 13px;
-    font-weight: bold;
-    letter-spacing: 0.12em;
-    cursor: pointer;
-    min-height: 44px;
-  }
-
-  .start-btn:hover {
-    background: var(--amber);
-    color: #090b0e;
-  }
-
-  .game-screen {
-    display: none;
-    flex-direction: column;
-    gap: 11px;
-  }
-
-  .game-screen.visible {
-    display: flex;
+  .lead {
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: #c2ccd6;
   }
 
   .deck {
     background: linear-gradient(180deg, #1f242d 0%, #0f1217 100%);
     border: 2px solid #353d4d;
     border-radius: 12px;
-    padding: 13px;
+    padding: 15px;
     box-shadow: 0 22px 60px rgba(0, 0, 0, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.08);
     display: flex;
     flex-direction: column;
-    gap: 11px;
+    gap: 12px;
     transition: border-color 0.35s ease, box-shadow 0.35s ease;
   }
 
   .deck.act2 {
-    border-color: #8f232e;
-    box-shadow: 0 22px 68px rgba(155, 16, 28, 0.42), inset 0 1px 0 rgba(255, 95, 95, 0.16);
+    border-color: #8b2630;
+    box-shadow: 0 22px 66px rgba(145, 18, 28, 0.38), inset 0 1px 0 rgba(255, 95, 95, 0.16);
   }
 
+  /* Cassette Tabs */
   .tape-selector {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 7px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+  }
+
+  @media (max-width: 680px) {
+    .tape-selector {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 
   .tape-btn {
-    flex: 1 1 calc(33.333% - 6px);
-    min-width: 110px;
     background: #0c0f14;
     border: 1px solid #2b3240;
     color: var(--dim);
     font-family: var(--mono);
-    font-size: 10.5px;
-    padding: 8px 8px;
+    font-size: 11px;
+    padding: 8px 10px;
     border-radius: 6px;
     cursor: pointer;
     text-align: left;
-    min-height: 46px;
+    transition: all 0.15s ease;
   }
 
   .tape-btn strong {
     display: block;
-    font-size: 11px;
+    font-size: 11.5px;
     color: var(--ink);
     margin-bottom: 2px;
   }
@@ -299,33 +148,33 @@
   }
 
   .tape-btn.vierge {
-    flex: 1 1 100%;
-    border-color: #7c242e;
-    background: #1b0c10;
-    color: #f7b2b9;
-    text-align: center;
+    border-color: #6b242c;
+    background: #190d10;
+    color: #f3a6ae;
   }
 
   .tape-btn.vierge.active {
     border-color: var(--red);
-    background: #2e1016;
-    color: #ffd6da;
+    background: #2b1116;
+    color: #ffd1d6;
   }
 
   .tape-btn.hidden {
-    display: none;
+    opacity: 0.35;
+    pointer-events: none;
   }
 
+  /* Top Display Row */
   .top-row {
     display: grid;
-    grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr) minmax(0, 1fr);
-    gap: 9px;
+    grid-template-columns: 1.25fr 0.75fr 1fr;
+    gap: 10px;
     align-items: stretch;
   }
 
   @media (max-width: 640px) {
     .top-row {
-      grid-template-columns: minmax(0, 1fr);
+      grid-template-columns: 1fr;
     }
   }
 
@@ -333,24 +182,25 @@
     background: #090b0e;
     border: 1px solid #262d38;
     border-radius: 8px;
-    padding: 9px;
+    padding: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    min-height: 82px;
+    min-height: 88px;
   }
 
   .reels {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 32px;
+    gap: 34px;
+    margin-top: 2px;
   }
 
   .reel {
-    width: 30px;
-    height: 30px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
     border: 3px dashed #6b7785;
     background: #141820;
@@ -359,8 +209,8 @@
 
   .reel::after {
     content: "";
-    width: 8px;
-    height: 8px;
+    width: 9px;
+    height: 9px;
     border-radius: 50%;
     background: var(--amber);
     position: absolute;
@@ -373,7 +223,7 @@
     font-family: var(--mono);
     font-size: 10px;
     color: var(--dim);
-    letter-spacing: 0.08em;
+    letter-spacing: 0.1em;
   }
 
   .counter-box {
@@ -390,7 +240,7 @@
 
   .counter-num {
     font-family: var(--mono);
-    font-size: 24px;
+    font-size: 26px;
     font-weight: bold;
     color: var(--phosphor);
     letter-spacing: 3px;
@@ -401,9 +251,9 @@
     font-size: 10px;
     padding: 2px 7px;
     border-radius: 4px;
-    background: #141820;
-    color: #8794a3;
-    border: 1px solid #28303d;
+    background: #1a1214;
+    color: #8f6b70;
+    border: 1px solid #3a2327;
   }
 
   .lock-led.on {
@@ -417,7 +267,7 @@
     background: #090b0e;
     border: 1px solid #262d38;
     border-radius: 8px;
-    padding: 9px;
+    padding: 10px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -445,10 +295,11 @@
     transition: width 0.08s linear;
   }
 
+  /* Switches & Sliders */
   .switches-row {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 9px;
+    grid-template-columns: 1.2fr 1.2fr 0.8fr;
+    gap: 10px;
     background: rgba(9, 11, 15, 0.78);
     border: 1px solid #262c38;
     border-radius: 8px;
@@ -457,7 +308,7 @@
 
   @media (max-width: 640px) {
     .switches-row {
-      grid-template-columns: minmax(0, 1fr);
+      grid-template-columns: 1fr;
     }
   }
 
@@ -481,8 +332,7 @@
 
   .seg-btn {
     flex: 1;
-    padding: 9px 4px;
-    min-height: 40px;
+    padding: 7px 4px;
     background: #161b23;
     border: 1px solid #323b4c;
     color: #9ba7b6;
@@ -509,7 +359,7 @@
 
   .sliders-row {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 10px;
     background: rgba(9, 11, 15, 0.78);
     border: 1px solid #262c38;
@@ -519,14 +369,14 @@
 
   @media (max-width: 640px) {
     .sliders-row {
-      grid-template-columns: minmax(0, 1fr);
+      grid-template-columns: 1fr;
     }
   }
 
   .ctrl {
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 5px;
     font-family: var(--mono);
     font-size: 11px;
     color: var(--dim);
@@ -539,37 +389,29 @@
 
   .ctrl input[type="range"] {
     width: 100%;
-    height: 26px;
     accent-color: var(--amber);
     cursor: pointer;
   }
 
-  .instruction-strip {
+  .hint-strip {
     background: #0c1016;
-    border: 1px dashed #323d4e;
+    border: 1px dashed #313b4b;
     border-radius: 6px;
-    padding: 9px 11px;
+    padding: 8px 11px;
     font-family: var(--mono);
     font-size: 11.5px;
-    color: #b5c2d1;
-    line-height: 1.5;
-  }
-
-  .instruction-strip.puzzle-mode {
-    background: #170c0f;
-    border-color: #7a2630;
-    color: #ffc7cc;
+    color: #a9b7c6;
+    line-height: 1.45;
   }
 
   .transport {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 9px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
   }
 
   .t-btn {
-    padding: 12px 10px;
-    min-height: 44px;
+    padding: 11px 10px;
     background: #1b2029;
     border: 1px solid #394254;
     border-bottom: 4px solid #0c0e12;
@@ -598,98 +440,94 @@
     color: var(--amber);
   }
 
-  .facts-panel {
-    background: rgba(13, 16, 22, 0.94);
-    border: 1px solid #262e3b;
-    border-radius: 8px;
-    padding: 11px 14px;
+  /* Notebook Grid (Act I Identity -> Act II Blank Tape Decryption) */
+  .notebook-header {
     display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-
-  .facts-title {
+    justify-content: space-between;
+    align-items: center;
     font-family: var(--mono);
-    font-size: 10.5px;
-    letter-spacing: 0.1em;
+    font-size: 11px;
     color: var(--amber);
+    letter-spacing: 0.08em;
   }
 
-  .facts-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
+  .case-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  @media (max-width: 640px) {
+    .case-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .case-card {
+    background: rgba(14, 17, 23, 0.94);
+    border: 1px solid #28303d;
+    border-radius: 7px;
+    padding: 9px 11px;
     font-family: var(--mono);
     font-size: 11.5px;
-    color: #c7d2dc;
   }
 
-  .facts-list li::before {
-    content: "— ";
-    color: var(--phosphor);
+  .case-card.unlocked {
+    border-color: #385c4f;
+    background: #101917;
   }
 
-  .facts-list li.dark-fact::before {
-    content: "! ";
-    color: var(--red);
+  .case-card.crimson {
+    border-color: #6b242c;
+    background: #190e11;
   }
 
+  .case-key {
+    font-size: 10px;
+    color: var(--amber);
+    letter-spacing: 0.08em;
+    margin-bottom: 3px;
+  }
+
+  .case-card.crimson .case-key {
+    color: #ff8a95;
+  }
+
+  .case-val {
+    color: #c5d0db;
+    line-height: 1.4;
+  }
+
+  /* Visual Novel Transcript & Inner Thoughts */
   .vn-panel {
-    background: rgba(14, 17, 23, 0.97);
+    background: rgba(14, 17, 23, 0.96);
     border: 1px solid var(--border);
     border-radius: 10px;
     padding: 15px;
     display: flex;
     flex-direction: column;
     gap: 10px;
-    box-shadow: 0 18px 46px rgba(0, 0, 0, 0.82);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.78);
   }
 
-  .tape-audio-box {
+  .transcript-box {
     background: #0d1016;
     border: 1px solid #293242;
     border-left: 3px solid var(--amber);
     border-radius: 6px;
-    padding: 11px 13px;
-    font-size: 13.5px;
-    line-height: 1.62;
-    color: #d3dde7;
-    font-style: italic;
+    padding: 10px 12px;
+    font-size: 13px;
+    line-height: 1.55;
+    color: #cfd8e3;
   }
 
-  .tape-audio-box.vierge-evidence {
-    background: #170a0e;
-    border-color: #69212a;
+  .transcript-box.hiss-voice {
+    background: #160c0f;
+    border-color: #592329;
     border-left: 4px solid var(--red);
     font-family: var(--mono);
-    font-style: normal;
     font-size: 12.5px;
-    color: #ffd2d7;
-  }
-
-  .relisten-bar {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin-top: 6px;
-  }
-
-  .relisten-btn {
-    background: #231116;
-    border: 1px solid #7d2934;
-    color: #ffc7cd;
-    font-family: var(--mono);
-    font-size: 10.5px;
-    padding: 6px 10px;
-    border-radius: 4px;
-    cursor: pointer;
-    min-height: 34px;
-  }
-
-  .relisten-btn:hover {
-    border-color: var(--red);
-    background: #36141c;
+    color: #ffd0d4;
   }
 
   .speaker-tag {
@@ -700,17 +538,17 @@
     text-transform: uppercase;
   }
 
-  .self-talk {
+  .vn-dialogue {
     font-size: 14.5px;
-    line-height: 1.68;
-    color: #f0f5f9;
-    min-height: 54px;
+    line-height: 1.6;
+    color: #eef3f7;
+    min-height: 48px;
   }
 
   .choices-box {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 7px;
     margin-top: 4px;
   }
 
@@ -720,18 +558,17 @@
     color: #eef3f7;
     font-family: var(--mono);
     font-size: 12px;
-    padding: 11px 12px;
-    min-height: 44px;
+    padding: 9px 12px;
     border-radius: 6px;
     text-align: left;
     cursor: pointer;
-    line-height: 1.45;
+    transition: all 0.15s ease;
   }
 
   .choice-btn:hover {
-    border-color: var(--red);
-    color: #ffd0d5;
-    background: #261216;
+    border-color: var(--amber);
+    color: var(--amber);
+    background: #231d18;
   }
 
   .vn-footer {
@@ -745,20 +582,13 @@
     color: var(--dim);
   }
 
-  .vn-actions {
-    display: flex;
-    gap: 8px;
-    align-items: center;
-  }
-
   .next-line-btn {
     background: #1f2733;
     border: 1px solid #48566b;
     color: var(--ink);
     font-family: var(--mono);
-    font-size: 11.5px;
-    padding: 9px 14px;
-    min-height: 40px;
+    font-size: 11px;
+    padding: 7px 12px;
     border-radius: 5px;
     cursor: pointer;
   }
@@ -771,174 +601,154 @@
 </head>
 <body>
 
-<div class="jumpscare-flash" id="scareOverlay">
-  <div class="scare-word" id="scareWord">BEHIND YOU</div>
-</div>
+<div class="wrap">
+  <div class="header-box">
+    <div class="tag">RUE DU BAC, PARIS // SIXTH-FLOOR ATTIC FLAT</div>
+    <div class="title">THE RUE DU BAC TAPES</div>
+    <p class="lead">
+      You just moved into a small rented attic flat in Paris and found an old shoebox behind a loose radiator board. Inside are three C-60 cassettes dated <strong>autumn 1984</strong>—an American girl's audio diary—and one unmarked <strong>blank cassette (<em>cassette vierge</em>)</strong> tucked beneath the cardboard liner.
+    </p>
+  </div>
 
-<div class="ending-screen" id="endingScreen">
-  <div class="ending-card">
-    <div class="ending-tag" id="endingTag">ENDING</div>
-    <h2 class="ending-title" id="endingTitle"></h2>
-    <div class="ending-audio-cue" id="endingCue"></div>
-    <p class="ending-body" id="endingBody"></p>
-    <div class="ending-actions">
-      <button type="button" class="ending-btn" onclick="silenceHumOnly()">SILENCE HUM</button>
-      <button type="button" class="ending-btn" onclick="silenceAndReload()">PLAY AGAIN</button>
+  <div class="deck" id="deck">
+    <div class="tape-selector">
+      <button type="button" class="tape-btn active" id="tab0" onclick="selectTape(0)">
+        <strong>TAPE 01 // OCT '84</strong>
+        "Arrival & Classes"
+      </button>
+      <button type="button" class="tape-btn" id="tab1" onclick="selectTape(1)">
+        <strong>TAPE 02 // NOV '84</strong>
+        "Saint-Germain & Julien"
+      </button>
+      <button type="button" class="tape-btn" id="tab2" onclick="selectTape(2)">
+        <strong>TAPE 03 // NOV 14</strong>
+        "Late Night Entry"
+      </button>
+      <button type="button" class="tape-btn vierge hidden" id="tab3" onclick="selectTape(3)">
+        <strong>CASSETTE VIERGE</strong>
+        "Found under shoebox liner"
+      </button>
+    </div>
+
+    <div class="top-row">
+      <div class="well">
+        <div class="reels">
+          <div class="reel" id="reelL"></div>
+          <div class="reel" id="reelR"></div>
+        </div>
+        <div class="well-label" id="tapeStatus">STOPPED // PRESS PLAY TO LISTEN</div>
+      </div>
+
+      <div class="counter-box">
+        <div class="well-label">COUNTER</div>
+        <div class="counter-num" id="counter">000</div>
+        <div class="lock-led" id="lockLed">MONITORING</div>
+      </div>
+
+      <div class="vu-box">
+        <div class="well-label">TAPE / HISS LEVEL</div>
+        <div class="vu-bars">
+          <div class="vu-track"><div class="vu-fill" id="vuL"></div></div>
+          <div class="vu-track"><div class="vu-fill" id="vuR"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Deck Controls -->
+    <div class="switches-row">
+      <div class="switch-group">
+        <div class="switch-label">1. INPUT BAND</div>
+        <div class="btn-strip">
+          <button type="button" class="seg-btn active" data-band="TAPE" onclick="setBand('TAPE')">TAPE</button>
+          <button type="button" class="seg-btn" data-band="AM" onclick="setBand('AM')">AM</button>
+          <button type="button" class="seg-btn" data-band="SUB" onclick="setBand('SUB')">SUB</button>
+        </div>
+      </div>
+
+      <div class="switch-group">
+        <div class="switch-label">2. TRANSPORT SPEED</div>
+        <div class="btn-strip">
+          <button type="button" class="seg-btn active" data-speed="1.0" onclick="setSpeed('1.0')">1.0x</button>
+          <button type="button" class="seg-btn" data-speed="0.5" onclick="setSpeed('0.5')">0.5x</button>
+          <button type="button" class="seg-btn" data-speed="REV" onclick="setSpeed('REV')">REV</button>
+        </div>
+      </div>
+
+      <div class="switch-group">
+        <div class="switch-label">3. HISS FILTER</div>
+        <div class="btn-strip">
+          <button type="button" class="seg-btn" id="sparksBtn" onclick="toggleSparks()">HISS GATE: OFF</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="sliders-row">
+      <div class="ctrl">
+        <div class="ctrl-head"><span>4. BASS CUT</span><span id="bassVal">20%</span></div>
+        <input type="range" id="bass" min="0" max="1" step="0.05" value="0.2" oninput="onControlChange()" />
+      </div>
+
+      <div class="ctrl">
+        <div class="ctrl-head"><span>5. TREBLE / HISS</span><span id="trebleVal">30%</span></div>
+        <input type="range" id="treble" min="0" max="1" step="0.05" value="0.3" oninput="onControlChange()" />
+      </div>
+
+      <div class="ctrl">
+        <div class="ctrl-head"><span>6. HEAD BIAS</span><span id="biasVal">50%</span></div>
+        <input type="range" id="bias" min="0" max="1" step="0.05" value="0.5" oninput="onControlChange()" />
+      </div>
+    </div>
+
+    <div class="hint-strip" id="hintStrip">
+      ACT I — Listen through Tapes 01, 02, and 03 (click "Continue Listening >") to piece together who this girl was in 1984. Tweaking the knobs alters the room tone and reveals how unsettled she really was.
+    </div>
+
+    <div class="transport">
+      <button type="button" class="t-btn" onclick="rewindDeck()">REW</button>
+      <button type="button" class="t-btn active-stop" id="stopBtn" onclick="stopDeck()">STOP</button>
+      <button type="button" class="t-btn active-play" id="playBtn" onclick="playDeck()">PLAY</button>
     </div>
   </div>
-</div>
 
-<div class="wrap">
-  <section class="intro-card" id="introScreen">
-    <div class="intro-tag">PARIS // RUE DU BAC // SIXTH-FLOOR RENTAL</div>
-    <h1 class="intro-title">THE RUE DU BAC TAPES</h1>
-    <p class="intro-copy">
-      You just moved into a small, cheap sixth-floor rental apartment in an old Paris building. While clearing out behind a loose wooden board near the bedroom radiator, you found a dusty cardboard box holding several 1980s cassettes—and one blank tape (<em>cassette vierge</em>) tucked under the bottom flap.
-    </p>
-    <p class="intro-copy">
-      You don't know who lived here before you, or why those tapes were hidden out of sight. Alone in the quiet flat tonight, you put the first cassette in and press play.
-    </p>
-    <button type="button" class="start-btn" onclick="startGame()">START</button>
-  </section>
-
-  <main class="game-screen" id="gameScreen">
-    <div class="deck" id="deck">
-      <div class="tape-selector">
-        <button type="button" class="tape-btn active" id="tab0" onclick="selectTape(0)">
-          <strong>TAPE 01</strong>
-          "Mid-Sept '84"
-        </button>
-        <button type="button" class="tape-btn" id="tab1" onclick="selectTape(1)">
-          <strong>TAPE 02</strong>
-          "Late Sept '84"
-        </button>
-        <button type="button" class="tape-btn" id="tab2" onclick="selectTape(2)">
-          <strong>TAPE 03</strong>
-          "Mid-Oct '84"
-        </button>
-        <button type="button" class="tape-btn" id="tab3" onclick="selectTape(3)">
-          <strong>TAPE 04</strong>
-          "Late Oct '84"
-        </button>
-        <button type="button" class="tape-btn" id="tab4" onclick="selectTape(4)">
-          <strong>TAPE 05</strong>
-          "Early Nov '84"
-        </button>
-        <button type="button" class="tape-btn" id="tab5" onclick="selectTape(5)">
-          <strong>TAPE 06</strong>
-          "Nov 14, 1984"
-        </button>
-        <button type="button" class="tape-btn vierge hidden" id="tab6" onclick="selectTape(6)">
-          <strong>CASSETTE VIERGE (BLANK TAPE)</strong>
-          "Found under shoebox liner — tune hiss to decrypt"
-        </button>
-      </div>
-
-      <div class="top-row">
-        <div class="well">
-          <div class="reels">
-            <div class="reel" id="reelL"></div>
-            <div class="reel" id="reelR"></div>
-          </div>
-          <div class="well-label" id="tapeStatus">STOPPED // PRESS PLAY</div>
-        </div>
-
-        <div class="counter-box">
-          <div class="well-label">COUNTER</div>
-          <div class="counter-num" id="counter">000</div>
-          <div class="lock-led" id="lockLed">DIARY PLAYBACK</div>
-        </div>
-
-        <div class="vu-box">
-          <div class="well-label">HISS / HUM</div>
-          <div class="vu-bars">
-            <div class="vu-track"><div class="vu-fill" id="vuL"></div></div>
-            <div class="vu-track"><div class="vu-fill" id="vuR"></div></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="switches-row">
-        <div class="switch-group">
-          <div class="switch-label">BAND</div>
-          <div class="btn-strip">
-            <button type="button" class="seg-btn active" data-band="TAPE" onclick="setBand('TAPE')">TAPE</button>
-            <button type="button" class="seg-btn" data-band="AM" onclick="setBand('AM')">AM</button>
-            <button type="button" class="seg-btn" data-band="SUB" onclick="setBand('SUB')">SUB</button>
-          </div>
-        </div>
-
-        <div class="switch-group">
-          <div class="switch-label">SPEED</div>
-          <div class="btn-strip">
-            <button type="button" class="seg-btn active" data-speed="1.0" onclick="setSpeed('1.0')">1.0x</button>
-            <button type="button" class="seg-btn" data-speed="0.5" onclick="setSpeed('0.5')">0.5x</button>
-            <button type="button" class="seg-btn" data-speed="REV" onclick="setSpeed('REV')">REV</button>
-          </div>
-        </div>
-
-        <div class="switch-group">
-          <div class="switch-label">HISS TUNER</div>
-          <div class="btn-strip">
-            <button type="button" class="seg-btn" id="sparksBtn" onclick="toggleSparks()">SPARKS: OFF</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="sliders-row">
-        <div class="ctrl">
-          <div class="ctrl-head"><span>ROOM HUM</span><span id="bassVal">20%</span></div>
-          <input type="range" id="bass" min="0" max="1" step="0.05" value="0.2" oninput="onSliderChange()" />
-        </div>
-
-        <div class="ctrl">
-          <div class="ctrl-head"><span>FINE HISS</span><span id="trebleVal">30%</span></div>
-          <input type="range" id="treble" min="0" max="1" step="0.05" value="0.3" oninput="onSliderChange()" />
-        </div>
-
-        <div class="ctrl">
-          <div class="ctrl-head"><span>STATIC GRIT</span><span id="biasVal">50%</span></div>
-          <input type="range" id="bias" min="0" max="1" step="0.05" value="0.5" oninput="onSliderChange()" />
-        </div>
-      </div>
-
-      <div class="instruction-strip" id="instructionStrip">
-        DIARY MODE: Listen through the 1984 diary tapes using "Next Entry &gt;". Changing SPEED alters Clara's voice speed and pitch; sliders and bands shape the background hum, hiss, and static.
-      </div>
-
-      <div class="transport">
-        <button type="button" class="t-btn" onclick="rewindDeck()">REW</button>
-        <button type="button" class="t-btn active-stop" id="stopBtn" onclick="stopDeck()">STOP</button>
-        <button type="button" class="t-btn active-play" id="playBtn" onclick="playDeck()">PLAY</button>
-      </div>
+  <!-- Notebook Section -->
+  <div class="notebook-header">
+    <span id="notebookTitle">NOTEBOOK // ACT I: WHO WAS SHE IN 1984?</span>
+    <span id="notebookProgress">0 / 4 CLUES LOGGED</span>
+  </div>
+  <div class="case-grid" id="caseGrid">
+    <div class="case-card" id="card0">
+      <div class="case-key">01 // NAME & STUDIES</div>
+      <div class="case-val" id="clue0">Listen to Tape 01 to learn her name and why she came to Paris.</div>
     </div>
-
-    <div class="facts-panel" id="factsPanel">
-      <div class="facts-title">WHAT YOU'VE PIECED TOGETHER SO FAR</div>
-      <ul class="facts-list" id="factsList">
-        <li>You found old 1984 cassettes hidden behind the radiator board in your rented flat.</li>
-      </ul>
+    <div class="case-card" id="card1">
+      <div class="case-key">02 // PARIS LIFE & FRIENDS</div>
+      <div class="case-val" id="clue1">Listen to Tape 02 to hear about her friend and favorite cafés.</div>
     </div>
-
-    <div class="vn-panel">
-      <div class="tape-audio-box" id="tapeAudioBox">
-        "Testing. September 18, 1984. My French is still rough. I'm Clara, Clara Hayes, just arrived from Boston for an art history year at the Louvre. This sixth-floor room on Rue du Bac is narrow, with sloping rafters and a radiator that ticks constantly."
-      </div>
-      <div class="relisten-bar" id="relistenBar"></div>
-      <div class="speaker-tag" id="speakerTag">YOU (TALKING TO YOURSELF)</div>
-      <div class="self-talk" id="selfTalk">
-        Clara Hayes. An American student. She speaks hesitantly, almost like she's keeping her voice down in a quiet building.
-      </div>
-      <div class="choices-box" id="choicesBox"></div>
-      <div class="vn-footer">
-        <span id="progressTag">TAPE 01 — ENTRY 1 / 2</span>
-        <div class="vn-actions">
-          <button type="button" class="next-line-btn" id="speakBtn" onclick="replayCurrentAudio()">Speak Entry</button>
-          <button type="button" class="next-line-btn" id="nextBtn" onclick="advanceScene()">Next Entry &gt;</button>
-        </div>
-      </div>
+    <div class="case-card" id="card2">
+      <div class="case-key">03 // THE BOY SHE LIKED</div>
+      <div class="case-val" id="clue2">Listen further on Tape 02 to find out who she was meeting.</div>
     </div>
-  </main>
+    <div class="case-card" id="card3">
+      <div class="case-key">04 // LAST DATED ENTRY</div>
+      <div class="case-val" id="clue3">Listen to Tape 03 to uncover her last entry—and what else was in the box.</div>
+    </div>
+  </div>
+
+  <!-- Visual Novel Transcript & Inner Monologue -->
+  <div class="vn-panel">
+    <div class="transcript-box" id="transcriptBox">
+      <strong>[TAPE 01 — OCT 12, 1984]:</strong> "Testing... okay, it's spinning. Hi, future me. It's Clara—Clara Hayes, officially living on the sixth floor of Rue du Bac. Five flights of stairs with two suitcases and zero elevator... <em>[a light, slightly breathless laugh]</em> ...I'm studying nineteenth-century painting at the École du Louvre, and my French is still terrible."
+    </div>
+    <div class="speaker-tag" id="speakerTag">YOU (IN YOUR NEW APARTMENT)</div>
+    <div class="vn-dialogue" id="vnText">
+      An American art student in Paris, autumn 1984. She sounds completely ordinary—almost cheerful—except for the way that little laugh trails off into the empty room.
+    </div>
+    <div class="choices-box" id="choicesBox"></div>
+    <div class="vn-footer">
+      <span id="progressTag">ENTRY 1 / 2 — TAPE 01</span>
+      <button type="button" class="next-line-btn" id="nextBtn" onclick="advanceEntry()">Continue Listening ></button>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -947,18 +757,17 @@ const DIARY_TAPES = [
     name: 'TAPE 01',
     entries: [
       {
-        display: "Testing. September 18, 1984. My French is still rough. I'm Clara, Clara Hayes, just arrived from Boston for an art history year at the Louvre. This sixth-floor room on Rue du Bac is narrow, with sloping rafters and a radiator that ticks constantly.",
-        spoken: "Testing. September 18, 1984. My French is still rough. I'm Clara, Clara Hayes, just arrived from Boston for an art history year at the Louvre. This sixth-floor room on Rue du Bac is narrow, with sloping rafters and a radiator that ticks constantly.",
-        fact: "Her name is Clara Hayes—an American student from Boston studying art history at the Louvre in September 1984.",
-        isDarkFact: false,
-        selfTalk: "Clara Hayes. An American student. She speaks hesitantly, almost like she's keeping her voice down in a quiet building."
+        audioText: "Testing... okay, it's spinning. Hi, future me. It's Clara—Clara Hayes, officially living on the sixth floor of Rue du Bac. Five flights of stairs with two suitcases and zero elevator... ha-ha... I'm studying nineteenth-century painting at the École du Louvre, and my French is still terrible.",
+        spoken: "Testing. Hi future me. It's Clara Hayes, living on the sixth floor of Rue du Bac. Ha ha. I'm studying painting at the Louvre.",
+        laugh: true,
+        thought: "An American art student in Paris, autumn 1984. She sounds completely ordinary—almost cheerful—except for the way that little laugh echoes in the empty room.",
+        unlock: () => unlockAct1Clue(0, "Clara Hayes, 22 — American exchange student studying 19th-century painting at the École du Louvre.")
       },
       {
-        display: "September 22. Unpacked my sketchbooks and hung my coat by the built-in wardrobe. The wood in here is old; if you press against the back board, it doesn't sound solid. Probably just an old flue or cupboard space.",
-        spoken: "September 22. Unpacked my sketchbooks and hung my coat by the built-in wardrobe. The wood in here is old. If you press against the back board, it doesn't sound solid. Probably just an old flue or cupboard space.",
-        fact: "She noticed the back board of the built-in wardrobe didn't sound solid when pressed.",
-        isDarkFact: false,
-        selfTalk: "That wardrobe again. When I cleared out this room, I noticed the back panel had old nails and plaster dust behind it."
+        audioText: "Oct 19, 1984. My bedroom is tiny—just a single iron bed, a desk by the dormer window, and this huge built-in wooden wardrobe that smells like damp plaster. The landlord, Monsieur Garnier, gave me two keys and told me not to bother the neighbors downstairs. He looked at me so strangely when I laughed... ha... maybe Americans just smile too much here.",
+        spoken: "October nineteenth, nineteen eighty-four. My bedroom has this huge wooden wardrobe that smells like damp plaster. The landlord told me not to bother anyone. Ha.",
+        laugh: true,
+        thought: "She's describing my exact bedroom—the dormer window, the built-in wardrobe against the plaster wall. And that nervous little laugh again..."
       }
     ]
   },
@@ -966,18 +775,18 @@ const DIARY_TAPES = [
     name: 'TAPE 02',
     entries: [
       {
-        display: "September 29. Met Sophie in my morning seminar. We walked over to Odéon for espresso and complained about cold rain and tiny Parisian bathrooms. She knows the city much better than I do.",
-        spoken: "September 29. Met Sophie in my morning seminar. We walked over to Odéon for espresso and complained about cold rain and tiny Parisian bathrooms. She knows the city much better than I do.",
-        fact: "She became friends with Sophie from her Louvre seminar and spent time around Odéon.",
-        isDarkFact: false,
-        selfTalk: "She has a normal student life here. Sophie, coffee near Odéon, notebooks and rain. Nothing strange yet, except how carefully she phrases things."
+        audioText: "Nov 3, 1984. Spent all afternoon at Café de Flore on Boulevard Saint-Germain with Sophie from my seminar, pretending we understood half the lecture. Then we walked past the Seine in the rain. I love this city so much it hurts... ha-ha... though my hands are freezing because the radiator up here clanks like someone knocking inside the wall.",
+        spoken: "November third. Spent all afternoon at Café de Flore with Sophie. I love Paris so much. Ha ha. Though the radiator clanks like someone knocking inside the wall.",
+        laugh: true,
+        thought: "She had friends—Sophie—a real life on Boulevard Saint-Germain. People don't just evaporate into thin air after spending the afternoon at Café de Flore.",
+        unlock: () => unlockAct1Clue(1, "Visited Café de Flore on Blvd Saint-Germain with her friend Sophie from the Louvre seminar.")
       },
       {
-        display: "October 3. It's late. I keep hearing faint steps on the landing outside, even when I haven't heard anyone come up the stairs. Maybe the floorboards just settle at night.",
-        spoken: "October 3. It's late. I keep hearing faint steps on the landing outside, even when I haven't heard anyone come up the stairs. Maybe the floorboards just settle at night.",
-        fact: "By early October, she began hearing faint steps on the landing outside without hearing anyone climb the stairs.",
-        isDarkFact: true,
-        selfTalk: "Steps on the landing without anyone coming up the stairs. I tell myself old buildings creak, but my ears catch that pause right after she says it."
+        audioText: "Nov 9, 1984. Okay, confession on tape: Julien from the architecture library walked me all the way back to Rue du Bac tonight. He has dark curly hair and borrows my pencils without giving them back... ha-ha... we're supposed to meet tomorrow at six near Pont Royal. I hope I don't make a fool of myself.",
+        spoken: "November ninth. Julien from the architecture library walked me back to Rue du Bac tonight. Ha ha. We are meeting tomorrow near Pont Royal.",
+        laugh: true,
+        thought: "Julien. She was supposed to meet him by Pont Royal. Wait—if she had a date, classes, and a friend waiting for her, why were her tapes still hidden behind my radiator?",
+        unlock: () => unlockAct1Clue(2, "Liked Julien, a student from the architecture library; planned to meet him near Pont Royal.")
       }
     ]
   },
@@ -985,159 +794,71 @@ const DIARY_TAPES = [
     name: 'TAPE 03',
     entries: [
       {
-        display: "October 14. Okay, just talking into the mic. Julien from the library walked me back toward Rue du Bac tonight. He talks about old stone churches like they're alive. I think I really like him.",
-        spoken: "October 14. Okay, just talking into the mic. Julien from the library walked me back toward Rue du Bac tonight. He talks about old stone churches like they're alive. I think I really like him.",
-        fact: "She grew close to a boy named Julien from the library, who walked her back toward Rue du Bac.",
-        isDarkFact: false,
-        selfTalk: "Julien. For a minute she sounds almost light, then her voice drops back into that quiet, watchful cadence."
+        audioText: "Nov 14, 1984, 11:40 PM. Julien never came to Pont Royal, or maybe I waited at the wrong end in the fog. I came back up the six flights alone. Someone's cigarette smoke was in the hallway, even though nobody else lives on this landing... ha... I'm locking the deadbolt and going to bed.",
+        spoken: "November fourteenth, eleven forty PM. Julien never came. I came back up alone. Someone's cigarette smoke was in the hallway. Ha. I'm locking the deadbolt.",
+        laugh: true,
+        thought: "November 14, 1984. Cigarette smoke on an empty landing—and that tiny, trembling laugh she does whenever she's trying to convince herself she's safe."
       },
       {
-        display: "October 21. When I came back tonight, the deadbolt was already turned once, not twice like I usually leave it. I must have been distracted, right?",
-        spoken: "October 21. When I came back tonight, the deadbolt was already turned once, not twice like I usually leave it. I must have been distracted, right?",
-        fact: "On October 21, she came home to find the deadbolt turned only once instead of twice.",
-        isDarkFact: true,
-        selfTalk: "Only turned once. If you live alone and lock your door the same way every night, a different lock position makes your stomach drop."
-      }
-    ]
-  },
-  {
-    name: 'TAPE 04',
-    entries: [
-      {
-        display: "October 28. Around midnight there were three soft knocks on my door. I held my breath and didn't answer. Nobody knocked again, and nobody walked back down the stairs.",
-        spoken: "October 28. Around midnight there were three soft knocks on my door. I held my breath and didn't answer. Nobody knocked again, and nobody walked back down the stairs.",
-        fact: "On October 28 around midnight, someone tapped three times on her door and never walked back down the stairs.",
-        isDarkFact: true,
-        selfTalk: "Three soft knocks at midnight, and nobody walked back down the stairs. Where did they go if they didn't go down?"
-      },
-      {
-        display: "October 31. Julien asked me to meet near the river tomorrow afternoon. I'm glad. I don't like sitting alone in this room after dark when the plaster smells like wet stone.",
-        spoken: "October 31. Julien asked me to meet near the river tomorrow afternoon. I'm glad. I don't like sitting alone in this room after dark when the plaster smells like wet stone.",
-        fact: "By late October, she felt uneasy sitting alone after dark in the room and noticed a wet stone smell.",
-        isDarkFact: true,
-        selfTalk: "She wanted to get out of the room after dark. That smell of wet stone and lime is still faint near the inner wall."
-      }
-    ]
-  },
-  {
-    name: 'TAPE 05',
-    entries: [
-      {
-        display: "November 7. Two knocks again past one in the morning. Whoever it is knows how to step softly near the banister so the wood doesn't groan. I didn't open up. My hands were shaking.",
-        spoken: "November 7. Two knocks again past one in the morning. Whoever it is knows how to step softly near the banister so the wood doesn't groan. I didn't open up. My hands were shaking.",
-        fact: "On November 7 past 1:00 AM, someone knocked again and knew how to walk quietly near the banister.",
-        isDarkFact: true,
-        selfTalk: "Someone knows this staircase well enough to avoid the creaking boards. That isn't a random stranger. Someone knew this building inside out."
-      },
-      {
-        display: "November 12. I looked closer at the seam behind the wardrobe back panel. There's a narrow hollow gap between the wood and the wall behind it. Why would there be a gap there?",
-        spoken: "November 12. I looked closer at the seam behind the wardrobe back panel. There's a narrow hollow gap between the wood and the wall behind it. Why would there be a gap there?",
-        fact: "On November 12, Clara found a narrow hollow gap between the wardrobe back panel and the wall behind it.",
-        isDarkFact: true,
-        selfTalk: "A narrow hollow gap behind the wardrobe back panel. Right where I pulled that loose board off and found the shoebox."
-      }
-    ]
-  },
-  {
-    name: 'TAPE 06',
-    entries: [
-      {
-        display: "November 14, 1984. 11:45 PM. Julien didn't show up earlier and I came back up alone. I feel like someone is waiting for me to turn the light off.",
-        spoken: "November 14, 1984. 11:45 PM. Julien didn't show up earlier and I came back up alone. I feel like someone is waiting for me to turn the light off.",
-        fact: "Late on November 14, 1984, Clara came back to the flat alone feeling watched.",
-        isDarkFact: true,
-        selfTalk: "November 14, 1984. Every word feels thinner now, like she's trying not to make a sound in case someone is already listening."
-      },
-      {
-        display: "Twelve oh-four. Wait. There's a knock. Soft, right on the door. Maybe Julien came late. Let me check the latch. [sharp click, tape cuts]",
-        spoken: "Twelve oh-four. Wait. There's a knock. Soft, right on the door. Maybe Julien came late. Let me check the latch.",
-        fact: "At 12:04 AM on November 14, a knock sounded at the door and the tape cut off as she went to the latch.",
-        isDarkFact: true,
-        selfTalk: "It cuts right at the latch. Nothing else on Tape 06. Wait. Under the bottom liner of the shoebox, there's a blank cassette, a cassette vierge."
-      }
-    ],
-    choiceAfter: {
-      prompt: "Before putting the blank cassette vierge in, the room feels heavier. What do you do?",
-      options: [
-        {
-          label: "1. [SLIDE IN THE CASSETTE VIERGE NOW] Load the blank tape and listen closely to the hiss.",
-          scare: false,
-          action: () => unlockViergeAndSelect()
-        },
-        {
-          label: "2. [PRESS AGAINST THE WARDROBE PANEL FIRST] Feel the seam before playing the blank tape.",
-          scare: true,
-          scareWord: "SOMETHING SHIFTED IN THE WALL",
-          action: () => {
-            addFact("You pressed against the wardrobe panel: something shifted behind the wood with a dry scrape.", true);
-            document.getElementById('selfTalk').textContent =
-              "The wood gives a dull thud and something scrapes dryly just behind the plaster. I need to hear what's on that blank cassette.";
-            unlockViergeAndSelect();
-          }
+        audioText: "Nov 14, 1984, 12:15 AM. Wait—why did I leave the recorder running? There's a light knock on my door. Maybe Julien realized which bridge I meant... let me just check the latch—[TAPE CUTS ABRUPTLY]",
+        spoken: "Twelve fifteen AM. There is a light knock on my door. Maybe Julien realized. Let me just check the latch.",
+        laugh: false,
+        thought: "The tape snaps off right after she walks toward the door. That's the end of Tape 03... wait. Underneath the cardboard liner inside the shoebox, there's a fourth cassette. Completely blank. No label at all.",
+        unlock: () => {
+          unlockAct1Clue(3, "Nov 14, 1984, 12:15 AM — heard a knock at her door, went to check the latch, and the tape cut off.");
+          revealViergeCassette();
         }
-      ]
-    }
+      }
+    ]
   }
 ];
 
 const VIERGE_STAGES = [
   {
-    shortLabel: "Frag 1: Slam & Breath",
-    title: "DECRYPT 1 / 4 — DOOR SLAM",
-    instruction: "DECRYPT STAGE 1: Set BAND = TAPE, SPEED = 0.5x, and SPARKS = ON to cut through the heavy breathing.",
-    check: (s) => s.band === 'TAPE' && s.speed === '0.5' && s.sparks,
-    evidenceText: "[HISS // 0.5x TAPE] [heavy slow breath] ... [HARD DOOR SLAM] ... [scuffle in the dark]",
-    struggleType: "slam",
-    cryIntensity: 0,
-    hasHereHiss: false,
-    fact: "Blank tape clue 1: Heavy breathing, a hard door slam inside the apartment, and a scuffle in the dark.",
-    selfTalk: "A sudden, violent door slam inside the flat, heavy breathing, and rough movement in the dark."
+    title: "FRAGMENT I // THE DOOR",
+    hint: "DECRYPT STEP 1/4: Set BAND = TAPE, SPEED = 0.5x, TREBLE/HISS >= 65%, and HISS GATE = ON.",
+    check: (s) => s.band === 'TAPE' && s.speed === '0.5' && s.treble >= 0.65 && s.sparks,
+    hissWords: "...hhh-ssshhh... not Julien... heavy boots... pushed the door... hhh-please...",
+    spoken: "not Julien... heavy boots... pushed the door... please...",
+    thought: "God... it barely sounds human—just breath and static scraping together—but you can make out the words. It wasn't Julien at the door.",
+    cardText: "Fragment I: Not Julien—a man forced the door open as she unlatched it."
   },
   {
-    shortLabel: "Frag 2: Boum, Bam & Distant Crying",
-    title: "DECRYPT 2 / 4 — BOUM & BAM",
-    instruction: "DECRYPT STAGE 2: Set BAND = AM, SPEED = 1.0x, FINE HISS >= 60%, and SPARKS = ON.",
-    check: (s) => s.band === 'AM' && s.speed === '1.0' && s.treble >= 0.6 && s.sparks,
-    evidenceText: "[HISS // AM BAND] [BOUM!] ... [BAM!] ... [distant female crying, cut by tape hiss]",
-    struggleType: "boumbam",
-    cryIntensity: 0.75,
-    hasHereHiss: false,
-    fact: "Blank tape clue 2: Heavy 'boum' and 'bam' impacts with distant female crying looping and getting cut by the tape.",
-    selfTalk: "Boum, bam, heavy impacts and distant female crying bleeding through the hiss, cut short as the tape loops."
+    title: "FRAGMENT II // THE THROAT",
+    hint: "DECRYPT STEP 2/4: Set BAND = SUB, SPEED = 0.5x, BASS CUT >= 60%, and HISS GATE = ON.",
+    check: (s) => s.band === 'SUB' && s.speed === '0.5' && s.bass >= 0.6 && s.sparks,
+    hissWords: "...ssshhh-khh... hand on my neck... couldn't scream... dragged past the bed... hhh...",
+    spoken: "hand on my neck... couldn't scream... dragged past the bed...",
+    thought: "My hands are shaking on the sliders. That hissing sob isn't a normal recording—it's like the magnetic oxide itself caught her last breath.",
+    cardText: "Fragment II: He grabbed her neck so she couldn't scream and dragged her past the iron bed."
   },
   {
-    shortLabel: "Frag 3: Heavy Bam & Crying",
-    title: "DECRYPT 3 / 4 — AGAINST THE WOOD",
-    instruction: "DECRYPT STAGE 3: Set BAND = SUB, SPEED = 0.5x, ROOM HUM >= 55%, and SPARKS = ON.",
-    check: (s) => s.band === 'SUB' && s.speed === '0.5' && s.bass >= 0.55 && s.sparks,
-    evidenceText: "[HISS // SUB BAND] [BAM!] ... [heavy blow against wood] ... [distant female crying, cut]",
-    struggleType: "heavybam",
-    cryIntensity: 0.92,
-    hasHereHiss: false,
-    fact: "Blank tape clue 3: A heavy 'bam' against wood, a door slam, and distant female crying cut by static.",
-    selfTalk: "A heavy bam against the wood and another door slam. The distant female crying rises and gets cut off in the loop."
+    title: "FRAGMENT III // THE FALSE PANEL",
+    hint: "DECRYPT STEP 3/4: Set BAND = AM, SPEED = REV, HEAD BIAS >= 70%, and HISS GATE = ON.",
+    check: (s) => s.band === 'AM' && s.speed === 'REV' && s.bias >= 0.7 && s.sparks,
+    hissWords: "...shhh-tock... opened the back of the wardrobe... nails and plaster... shut me in the dark...",
+    spoken: "opened the back of the wardrobe... nails and plaster... shut me in the dark...",
+    thought: "He didn't carry her down the stairs. He opened the false back of the built-in wardrobe and sealed it with plaster while she was still inside.",
+    cardText: "Fragment III: He forced her into the cavity behind the wardrobe and sealed it with nails and plaster."
   },
   {
-    shortLabel: "Frag 4: Crying & Hiss 'I am here'",
-    title: "DECRYPT 4 / 4 — HISS INSIDE THE WALL",
-    instruction: "DECRYPT STAGE 4: Set BAND = SUB, SPEED = REV, and SPARKS = ON to catch the hiss inside the wall.",
-    check: (s) => s.band === 'SUB' && s.speed === 'REV' && s.sparks,
-    evidenceText: "[HISS // SUB REV] [distant female crying, cut] ... [tape-hiss pulse]: ~i a m h e r e~ ~i a m h e r e~",
-    struggleType: "heavybam",
-    cryIntensity: 1.0,
-    hasHereHiss: true,
-    fact: "Blank tape clue 4: Distant female crying cut by the tape alongside a tape-hiss 'I am here, I am here' inside the wall.",
-    selfTalk: "Distant female crying cut off in the hiss, and then 'I am here, I am here' shaped out of the tape hiss itself."
+    title: "FRAGMENT IV // WHERE SHE IS NOW",
+    hint: "DECRYPT STEP 4/4: Set BAND = SUB, SPEED = REV, TREBLE >= 75%, BASS CUT >= 70%, HISS GATE = ON.",
+    check: (s) => s.band === 'SUB' && s.speed === 'REV' && s.treble >= 0.75 && s.bass >= 0.7 && s.sparks,
+    hissWords: "...hhh-ssshhh... still behind your wall... right next to your bed... forty-two years in the dark...",
+    spoken: "still behind your wall... right next to your bed... in the dark...",
+    thought: "She never left Rue du Bac. She's three feet behind the plaster wall in my bedroom—and I'm the first person in decades to listen to this blank tape.",
+    cardText: "Fragment IV: Clara is still inside the apartment wall behind the bedroom wardrobe."
   }
 ];
 
 const state = {
   tape: 0,
   entry: 0,
+  act1Clues: [false, false, false, false],
   viergeUnlocked: false,
   viergeStep: 0,
   viergeSolved: [false, false, false, false],
-  activeReplayIdx: 1,
   playing: false,
   band: 'TAPE',
   speed: '1.0',
@@ -1147,503 +868,197 @@ const state = {
   bias: 0.5,
   counter: 0,
   angle: 0,
-  choiceActive: false,
-  endingActive: false,
-  endingDone: false,
-  loopCycle: 0,
-  loggedFacts: new Set(["You found old 1984 cassettes hidden behind the radiator board in your rented flat."])
+  endingChosen: false
 };
 
 let audioCtx = null;
-let hissFilter = null;
-let hissGain = null;
-let gritFilter = null;
-let gritGain = null;
-let humOsc = null;
-let humGain = null;
-let distantBus = null;
-let cryBus = null;
+let noiseFilter = null;
+let noiseGain = null;
+let subOsc = null;
+let subGain = null;
 let uiTimer = null;
-let loopTimer = null;
-let speechTimer = null;
-let scareTimer = null;
-
-function primeSpeechEngine() {
-  if (!('speechSynthesis' in window)) return;
-  try {
-    if (window.speechSynthesis.paused) {
-      window.speechSynthesis.resume();
-    }
-  } catch (e) {}
-}
-
-function cleanSpeechText(raw) {
-  return String(raw || '').replace(/\.{2,}/g, ',').replace(/—/g, ', ').trim();
-}
+let ambientTimer = null;
 
 function ensureAudio() {
   if (!audioCtx) {
     const AC = window.AudioContext || window.webkitAudioContext;
     audioCtx = new AC();
 
+    // Rich analog hiss + grit buffer
     const len = audioCtx.sampleRate * 3;
-    const hissBuf = audioCtx.createBuffer(1, len, audioCtx.sampleRate);
-    const hData = hissBuf.getChannelData(0);
-    for (let i = 0; i < len; i++) {
-      hData[i] = Math.random() * 2 - 1;
-    }
-
-    const hissSrc = audioCtx.createBufferSource();
-    hissSrc.buffer = hissBuf;
-    hissSrc.loop = true;
-
-    hissFilter = audioCtx.createBiquadFilter();
-    hissFilter.type = 'highpass';
-    hissFilter.frequency.value = 1800;
-
-    hissGain = audioCtx.createGain();
-    hissGain.gain.value = 0.0001;
-
-    hissSrc.connect(hissFilter);
-    hissFilter.connect(hissGain);
-    hissGain.connect(audioCtx.destination);
-    hissSrc.start();
-
-    const gritBuf = audioCtx.createBuffer(1, len, audioCtx.sampleRate);
-    const gData = gritBuf.getChannelData(0);
+    const buf = audioCtx.createBuffer(1, len, audioCtx.sampleRate);
+    const data = buf.getChannelData(0);
     let last = 0;
     for (let i = 0; i < len; i++) {
       const w = Math.random() * 2 - 1;
-      gData[i] = (w * 0.65 + last * 0.35) * (Math.random() < 0.004 ? 2.5 : 1);
+      data[i] = (w * 0.74 + last * 0.26) * (Math.random() < 0.003 ? 2.3 : 1);
       last = w;
     }
 
-    const gritSrc = audioCtx.createBufferSource();
-    gritSrc.buffer = gritBuf;
-    gritSrc.loop = true;
+    const src = audioCtx.createBufferSource();
+    src.buffer = buf;
+    src.loop = true;
 
-    gritFilter = audioCtx.createBiquadFilter();
-    gritFilter.type = 'bandpass';
-    gritFilter.frequency.value = 1100;
-    gritFilter.Q.value = 1.1;
+    noiseFilter = audioCtx.createBiquadFilter();
+    noiseFilter.type = 'bandpass';
+    noiseFilter.frequency.value = 2100;
+    noiseFilter.Q.value = 0.75;
 
-    gritGain = audioCtx.createGain();
-    gritGain.gain.value = 0.0001;
+    noiseGain = audioCtx.createGain();
+    noiseGain.gain.value = 0.0001;
 
-    gritSrc.connect(gritFilter);
-    gritFilter.connect(gritGain);
-    gritGain.connect(audioCtx.destination);
-    gritSrc.start();
+    src.connect(noiseFilter);
+    noiseFilter.connect(noiseGain);
+    noiseGain.connect(audioCtx.destination);
+    src.start();
 
-    humOsc = audioCtx.createOscillator();
-    humOsc.type = 'sawtooth';
-    humOsc.frequency.value = 46;
+    // Sub-bass room dread drone
+    subOsc = audioCtx.createOscillator();
+    subOsc.type = 'sawtooth';
+    subOsc.frequency.value = 46;
 
-    const humLp = audioCtx.createBiquadFilter();
-    humLp.type = 'lowpass';
-    humLp.frequency.value = 105;
+    const lp = audioCtx.createBiquadFilter();
+    lp.type = 'lowpass';
+    lp.frequency.value = 95;
 
-    humGain = audioCtx.createGain();
-    humGain.gain.value = 0.0001;
+    subGain = audioCtx.createGain();
+    subGain.gain.value = 0.0001;
 
-    humOsc.connect(humLp);
-    humLp.connect(humGain);
-    humGain.connect(audioCtx.destination);
-    humOsc.start();
-
-    distantBus = audioCtx.createBiquadFilter();
-    distantBus.type = 'lowpass';
-    distantBus.frequency.value = 920;
-    distantBus.connect(audioCtx.destination);
-
-    // Distant crying bus: warm, slightly muffled analog tape tone (not metallic or robotic)
-    cryBus = audioCtx.createBiquadFilter();
-    cryBus.type = 'lowpass';
-    cryBus.frequency.value = 1950;
-    cryBus.connect(audioCtx.destination);
+    subOsc.connect(lp);
+    lp.connect(subGain);
+    subGain.connect(audioCtx.destination);
+    subOsc.start();
   }
-
   if (audioCtx.state === 'suspended') {
     audioCtx.resume();
   }
 }
 
-function updateNoiseLayers() {
-  if (!audioCtx) return;
-  const shouldRun = state.playing || state.endingActive;
-  const now = audioCtx.currentTime;
-
-  if (!shouldRun) {
-    hissGain.gain.setTargetAtTime(0.0001, now, 0.06);
-    gritGain.gain.setTargetAtTime(0.0001, now, 0.06);
-    humGain.gain.setTargetAtTime(0.0001, now, 0.06);
-    return;
-  }
-
-  const humBoost = state.endingActive ? 0.17 : (0.02 + state.bass * 0.11 + (state.sparks ? 0.04 : 0));
-  const hissBoost = state.endingActive ? 0.14 : (0.02 + state.treble * 0.12);
-  const gritBoost = state.endingActive ? 0.12 : (0.015 + state.bias * 0.11);
-
-  hissFilter.frequency.setTargetAtTime(1400 + state.treble * 3600, now, 0.08);
-  hissGain.gain.setTargetAtTime(hissBoost, now, 0.08);
-
-  const bandCenter = state.band === 'AM' ? 1550 : state.band === 'SUB' ? 520 : 1050;
-  gritFilter.frequency.setTargetAtTime(bandCenter + state.bias * 1200, now, 0.08);
-  gritGain.gain.setTargetAtTime(gritBoost, now, 0.08);
-
-  const humPitch = state.endingActive ? 29 : (state.speed === '0.5' || state.tape === 6 ? 34 : 49 - state.bass * 12);
-  humOsc.frequency.setTargetAtTime(humPitch, now, 0.1);
-  humGain.gain.setTargetAtTime(humBoost, now, 0.1);
-}
-
-function triggerJumpscare(word) {
-  ensureAudio();
-  clearTimeout(scareTimer);
-  const overlay = document.getElementById('scareOverlay');
-  const label = document.getElementById('scareWord');
-  label.textContent = word || 'BEHIND YOU';
-  overlay.classList.remove('active');
-  void overlay.offsetWidth;
-  overlay.classList.add('active');
-
-  const t = audioCtx.currentTime;
-  const dur = 0.65;
-  const len = Math.floor(audioCtx.sampleRate * dur);
-  const buf = audioCtx.createBuffer(1, len, audioCtx.sampleRate);
-  const d = buf.getChannelData(0);
-  for (let i = 0; i < len; i++) {
-    d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, 0.55);
-  }
-  const src = audioCtx.createBufferSource();
-  src.buffer = buf;
-
-  const bp = audioCtx.createBiquadFilter();
-  bp.type = 'bandpass';
-  bp.frequency.setValueAtTime(1850, t);
-  bp.frequency.exponentialRampToValueAtTime(220, t + dur);
-  bp.Q.value = 1.2;
-
-  const g = audioCtx.createGain();
-  g.gain.setValueAtTime(0.75, t);
-  g.gain.exponentialRampToValueAtTime(0.001, t + dur);
-
-  src.connect(bp);
-  bp.connect(g);
-  g.connect(audioCtx.destination);
-  src.start(t);
-
-  const sub = audioCtx.createOscillator();
-  const sg = audioCtx.createGain();
-  sub.type = 'sawtooth';
-  sub.frequency.setValueAtTime(135, t);
-  sub.frequency.exponentialRampToValueAtTime(32, t + 0.5);
-  sg.gain.setValueAtTime(0.55, t);
-  sg.gain.exponentialRampToValueAtTime(0.001, t + 0.52);
-  sub.connect(sg);
-  sg.connect(audioCtx.destination);
-  sub.start(t);
-  sub.stop(t + 0.54);
-
-  scareTimer = setTimeout(() => overlay.classList.remove('active'), 1260);
-}
-
-function playHarshImpact(atTime, freqStart, freqEnd, gainPeak, dur, crunchAmp) {
-  const thud = audioCtx.createOscillator();
-  const tg = audioCtx.createGain();
-  thud.type = 'triangle';
-  thud.frequency.setValueAtTime(freqStart, atTime);
-  thud.frequency.exponentialRampToValueAtTime(freqEnd, atTime + dur);
-  tg.gain.setValueAtTime(gainPeak, atTime);
-  tg.gain.exponentialRampToValueAtTime(0.0001, atTime + dur);
-  thud.connect(tg);
-  tg.connect(audioCtx.destination);
-  thud.start(atTime);
-  thud.stop(atTime + dur + 0.02);
-
-  const nLen = Math.floor(audioCtx.sampleRate * dur);
-  const nBuf = audioCtx.createBuffer(1, nLen, audioCtx.sampleRate);
-  const nd = nBuf.getChannelData(0);
-  for (let i = 0; i < nLen; i++) {
-    nd[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / nLen, 0.8);
-  }
-  const nSrc = audioCtx.createBufferSource();
-  nSrc.buffer = nBuf;
-
-  const lp = audioCtx.createBiquadFilter();
-  lp.type = 'lowpass';
-  lp.frequency.setValueAtTime(680, atTime);
-  lp.frequency.exponentialRampToValueAtTime(110, atTime + dur);
-
-  const ng = audioCtx.createGain();
-  ng.gain.setValueAtTime(crunchAmp, atTime);
-  ng.gain.exponentialRampToValueAtTime(0.0001, atTime + dur);
-
-  nSrc.connect(lp);
-  lp.connect(ng);
-  ng.connect(audioCtx.destination);
-  nSrc.start(atTime);
-}
-
-// Organic, uneven distant female crying: breathy sobs + irregular pitch slide, looped and cut by tape
-function playDistantWomanCrying(intensity) {
-  if (!audioCtx || !state.playing || intensity <= 0) return;
-  const t = audioCtx.currentTime;
-  const cutFactor = (state.loopCycle % 2 === 1) ? 0.52 : 0.72;
-
-  // Uneven spacing & lengths so it never sounds like a metronome or synth LFO
-  const sobs = [
-    { off: 1.32, dur: 0.68 * cutFactor, f0: 410, f1: 245, amp: 0.065 },
-    { off: 2.18, dur: 0.84 * cutFactor, f0: 445, f1: 225, amp: 0.08 }
-  ];
-
-  sobs.forEach((s) => {
-    const start = t + s.off;
-    const end = start + s.dur;
-
-    // Soft triangle + breathy noise mix (no harsh sawtooth buzz or fixed LFO)
-    const voiceOsc = audioCtx.createOscillator();
-    voiceOsc.type = 'triangle';
-    voiceOsc.frequency.setValueAtTime(s.f0, start);
-    voiceOsc.frequency.linearRampToValueAtTime(s.f0 * 1.04, start + s.dur * 0.22);
-    voiceOsc.frequency.exponentialRampToValueAtTime(s.f1, end);
-
-    const formant = audioCtx.createBiquadFilter();
-    formant.type = 'bandpass';
-    formant.frequency.setValueAtTime(740, start);
-    formant.frequency.exponentialRampToValueAtTime(490, end);
-    formant.Q.value = 1.6;
-
-    const vGain = audioCtx.createGain();
-    vGain.gain.setValueAtTime(0.0001, start);
-    vGain.gain.linearRampToValueAtTime(s.amp * intensity, start + s.dur * 0.28);
-    vGain.gain.setValueAtTime(s.amp * intensity * 0.75, end - 0.04);
-    // Abrupt tape cut/dropout
-    vGain.gain.linearRampToValueAtTime(0.0001, end);
-
-    voiceOsc.connect(formant);
-    formant.connect(vGain);
-    vGain.connect(cryBus);
-
-    voiceOsc.start(start);
-    voiceOsc.stop(end + 0.02);
-
-    // Breathy sob air shaped with a natural swell then sudden cut
-    const nLen = Math.max(64, Math.floor(audioCtx.sampleRate * s.dur));
-    const nBuf = audioCtx.createBuffer(1, nLen, audioCtx.sampleRate);
-    const nd = nBuf.getChannelData(0);
-    for (let i = 0; i < nLen; i++) {
-      const p = i / nLen;
-      const swell = p < 0.75 ? Math.pow(p / 0.75, 1.4) : 1.0;
-      nd[i] = (Math.random() * 2 - 1) * swell;
-    }
-    const nSrc = audioCtx.createBufferSource();
-    nSrc.buffer = nBuf;
-
-    const airBp = audioCtx.createBiquadFilter();
-    airBp.type = 'bandpass';
-    airBp.frequency.setValueAtTime(1150, start);
-    airBp.frequency.exponentialRampToValueAtTime(680, end);
-    airBp.Q.value = 1.3;
-
-    const airGain = audioCtx.createGain();
-    airGain.gain.setValueAtTime(0.18 * intensity, start);
-    airGain.gain.setValueAtTime(0.14 * intensity, end - 0.03);
-    airGain.gain.linearRampToValueAtTime(0.0001, end);
-
-    nSrc.connect(airBp);
-    airBp.connect(airGain);
-    airGain.connect(cryBus);
-    nSrc.start(start);
-  });
-}
-
-function playStruggleAudio(struggleType, cryIntensity) {
-  if (!audioCtx || (!state.playing && !state.endingActive)) return;
-  const t = audioCtx.currentTime;
-
-  [0, 1.15].forEach((offset) => {
-    const dur = 0.78;
-    const sLen = Math.floor(audioCtx.sampleRate * dur);
-    const sBuf = audioCtx.createBuffer(1, sLen, audioCtx.sampleRate);
-    const d = sBuf.getChannelData(0);
-    for (let i = 0; i < sLen; i++) {
-      const env = Math.pow(Math.sin((i / sLen) * Math.PI), 1.5);
-      d[i] = (Math.random() * 2 - 1) * env;
-    }
-    const src = audioCtx.createBufferSource();
-    src.buffer = sBuf;
-
-    const bp = audioCtx.createBiquadFilter();
-    bp.type = 'bandpass';
-    bp.frequency.setValueAtTime(320, t + offset);
-    bp.frequency.linearRampToValueAtTime(540, t + offset + 0.32);
-    bp.frequency.linearRampToValueAtTime(220, t + offset + dur);
-    bp.Q.value = 3.2;
-
-    const g = audioCtx.createGain();
-    g.gain.setValueAtTime(0.22, t + offset);
-    g.gain.exponentialRampToValueAtTime(0.0001, t + offset + dur);
-
-    src.connect(bp);
-    bp.connect(g);
-    g.connect(distantBus);
-    src.start(t + offset);
-  });
-
-  if (struggleType === 'slam') {
-    playHarshImpact(t + 0.65, 130, 24, 0.65, 0.34, 0.75);
-  } else if (struggleType === 'boumbam') {
-    playHarshImpact(t + 0.55, 105, 25, 0.62, 0.38, 0.7);
-    playHarshImpact(t + 1.05, 155, 22, 0.74, 0.3, 0.85);
-  } else if (struggleType === 'heavybam') {
-    playHarshImpact(t + 0.6, 150, 22, 0.76, 0.34, 0.88);
-    playHarshImpact(t + 1.2, 125, 20, 0.68, 0.36, 0.78);
-  }
-
-  if (cryIntensity > 0) {
-    playDistantWomanCrying(cryIntensity);
-  }
-}
-
-function playHereAsTapeHiss() {
+// Synthesize an eerie, uncanny little laugh or breathy hiss-voice burst
+function playUncannyBurst(isHissVoice) {
   if (!audioCtx || !state.playing) return;
   const t = audioCtx.currentTime;
 
-  [3.3, 4.5].forEach((baseOffset) => {
-    const syllables = [
-      { dt: 0.0, dur: 0.14, f: 2400, amp: 0.11 },
-      { dt: 0.18, dur: 0.16, f: 1950, amp: 0.12 },
-      { dt: 0.4, dur: 0.26, f: 2700, amp: 0.13 }
-    ];
-    syllables.forEach((syl) => {
-      const start = t + baseOffset + syl.dt;
-      const nLen = Math.floor(audioCtx.sampleRate * syl.dur);
-      const nBuf = audioCtx.createBuffer(1, nLen, audioCtx.sampleRate);
-      const nd = nBuf.getChannelData(0);
-      for (let i = 0; i < nLen; i++) {
-        nd[i] = (Math.random() * 2 - 1) * Math.sin((i / nLen) * Math.PI);
-      }
-      const src = audioCtx.createBufferSource();
-      src.buffer = nBuf;
+  if (isHissVoice) {
+    // Breath-modulated resonant hiss that sounds like crying/whispering inside static
+    const dur = 1.35;
+    const len = Math.floor(audioCtx.sampleRate * dur);
+    const buf = audioCtx.createBuffer(1, len, audioCtx.sampleRate);
+    const d = buf.getChannelData(0);
+    for (let i = 0; i < len; i++) {
+      const env = Math.sin((i / len) * Math.PI) * (0.55 + 0.45 * Math.sin(i * 0.0022));
+      d[i] = (Math.random() * 2 - 1) * env;
+    }
+    const src = audioCtx.createBufferSource();
+    src.buffer = buf;
 
-      const bp = audioCtx.createBiquadFilter();
-      bp.type = 'bandpass';
-      bp.frequency.value = syl.f;
-      bp.Q.value = 5.5;
+    const f1 = audioCtx.createBiquadFilter();
+    f1.type = 'bandpass';
+    f1.frequency.setValueAtTime(520, t);
+    f1.frequency.linearRampToValueAtTime(880, t + 0.5);
+    f1.frequency.linearRampToValueAtTime(410, t + dur);
+    f1.Q.value = 5.5;
 
-      const g = audioCtx.createGain();
-      g.gain.setValueAtTime(syl.amp, start);
-      g.gain.exponentialRampToValueAtTime(0.0001, start + syl.dur);
+    const g = audioCtx.createGain();
+    g.gain.setValueAtTime(0.28, t);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
 
-      src.connect(bp);
-      bp.connect(g);
-      g.connect(audioCtx.destination);
-      src.start(start);
-    });
-  });
-}
-
-function speakGentleVoiceCallingFromFlat() {
-  if (!('speechSynthesis' in window)) return;
-  primeSpeechEngine();
-
-  const u = new SpeechSynthesisUtterance("Come back, don't leave me here, wait for me.");
-  u.lang = 'en-US';
-  u.rate = 0.84;
-  u.pitch = 1.02;
-  u.volume = 0.42;
-
-  clearTimeout(speechTimer);
-  speechTimer = setTimeout(() => {
-    try {
-      window.speechSynthesis.speak(u);
-    } catch (e) {}
-  }, 120);
-}
-
-// Restored natural utterance handling without forcing robotic voice filters
-function getDiaryVoiceParams() {
-  if (state.speed === '0.5') {
-    return { rate: 0.72, pitch: 0.88, volume: 0.78 };
-  }
-  if (state.speed === 'REV') {
-    return { rate: 1.05, pitch: 1.15, volume: 0.74 };
-  }
-  return { rate: 0.95, pitch: 1.0, volume: 0.82 };
-}
-
-function speakDiary(text, forceCancel) {
-  if (!('speechSynthesis' in window) || !state.playing) return;
-  primeSpeechEngine();
-  clearTimeout(speechTimer);
-
-  if (forceCancel) {
-    try {
-      window.speechSynthesis.cancel();
-    } catch (e) {}
-  }
-
-  const params = getDiaryVoiceParams();
-  const u = new SpeechSynthesisUtterance(cleanSpeechText(text));
-  u.lang = 'en-US';
-  u.rate = params.rate;
-  u.pitch = params.pitch;
-  u.volume = params.volume;
-
-  const delay = forceCancel ? 100 : 40;
-  speechTimer = setTimeout(() => {
-    if (!state.playing) return;
-    try {
-      if (window.speechSynthesis.paused) {
-        window.speechSynthesis.resume();
-      }
-      window.speechSynthesis.speak(u);
-    } catch (e) {}
-  }, delay);
-}
-
-function replayCurrentAudio() {
-  ensureAudio();
-  primeSpeechEngine();
-  state.playing = true;
-  document.getElementById('playBtn').classList.add('active-play');
-  document.getElementById('stopBtn').classList.remove('active-stop');
-  document.getElementById('tapeStatus').textContent = 'PLAYING // TAPE RUNNING';
-  updateNoiseLayers();
-
-  if (state.tape < 6) {
-    const item = DIARY_TAPES[state.tape].entries[state.entry];
-    speakDiary(item.spoken, true);
+    src.connect(f1);
+    f1.connect(g);
+    g.connect(audioCtx.destination);
+    src.start(t);
   } else {
-    relistenFragment(state.activeReplayIdx);
+    // Subtle eerie 3-syllable breathy laugh + wall tap
+    [0, 0.19, 0.38].forEach((offset, idx) => {
+      const osc = audioCtx.createOscillator();
+      const g = audioCtx.createGain();
+      osc.type = 'triangle';
+      const baseF = state.speed === '0.5' ? 195 : 310;
+      osc.frequency.setValueAtTime(baseF - idx * 24, t + offset);
+      osc.frequency.exponentialRampToValueAtTime(baseF - 65 - idx * 20, t + offset + 0.14);
+      g.gain.setValueAtTime(0.055, t + offset);
+      g.gain.exponentialRampToValueAtTime(0.0001, t + offset + 0.15);
+      osc.connect(g);
+      g.connect(audioCtx.destination);
+      osc.start(t + offset);
+      osc.stop(t + offset + 0.16);
+    });
   }
 }
 
-function startGame() {
-  ensureAudio();
-  primeSpeechEngine();
-  document.getElementById('introScreen').style.display = 'none';
-  document.getElementById('gameScreen').classList.add('visible');
-  renderScene(false, state.activeReplayIdx, false);
+function speakLine(text, isHissSpark) {
+  if (!('speechSynthesis' in window)) return;
+  window.speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  if (isHissSpark) {
+    u.rate = 0.58;
+    u.pitch = 0.34;
+    u.volume = 0.85;
+  } else {
+    u.rate = state.speed === '0.5' ? 0.68 : 0.9;
+    u.pitch = state.speed === '0.5' ? 0.72 : 1.02;
+    u.volume = 0.68;
+  }
+  window.speechSynthesis.speak(u);
 }
 
-function addFact(factText, isDark) {
-  if (state.loggedFacts.has(factText)) return;
-  state.loggedFacts.add(factText);
-  const ul = document.getElementById('factsList');
-  const li = document.createElement('li');
-  li.textContent = factText;
-  if (isDark) li.classList.add('dark-fact');
-  ul.appendChild(li);
+function unlockAct1Clue(idx, text) {
+  if (state.act1Clues[idx]) return;
+  state.act1Clues[idx] = true;
+  document.getElementById(`clue${idx}`).textContent = text;
+  document.getElementById(`card${idx}`).classList.add('unlocked');
+  const count = state.act1Clues.filter(Boolean).length;
+  document.getElementById('notebookProgress').textContent = `${count} / 4 CLUES LOGGED`;
 }
 
-function unlockViergeAndSelect() {
-  state.choiceActive = false;
-  document.getElementById('choicesBox').innerHTML = '';
-  document.getElementById('nextBtn').style.display = 'none';
+function revealViergeCassette() {
+  if (state.viergeUnlocked) return;
   state.viergeUnlocked = true;
-  document.getElementById('tab6').classList.remove('hidden');
-  selectTape(6);
+  const tab3 = document.getElementById('tab3');
+  tab3.classList.remove('hidden');
+  document.getElementById('hintStrip').textContent =
+    "NEW CASSETTE FOUND: Click 'CASSETTE VIERGE' above to load the unmarked blank tape found under the shoebox liner.";
+}
+
+function switchNotebookToAct2() {
+  document.getElementById('notebookTitle').textContent = 'DECRYPTION LOG // ACT II: CASSETTE VIERGE';
+  const count = state.viergeSolved.filter(Boolean).length;
+  document.getElementById('notebookProgress').textContent = `${count} / 4 FRAGMENTS DECRYPTED`;
+  const grid = document.getElementById('caseGrid');
+  grid.innerHTML = VIERGE_STAGES.map((st, i) => `
+    <div class="case-card ${state.viergeSolved[i] ? 'crimson' : ''}" id="vcard${i}">
+      <div class="case-key">${st.title}</div>
+      <div class="case-val" id="vclue${i}">
+        ${state.viergeSolved[i] ? st.cardText : 'Encrypted in hiss — match the tuning combination to decode.'}
+      </div>
+    </div>
+  `).join('');
+}
+
+function switchNotebookToAct1() {
+  const names = [
+    '01 // NAME & STUDIES',
+    '02 // PARIS LIFE & FRIENDS',
+    '03 // THE BOY SHE LIKED',
+    '04 // LAST DATED ENTRY'
+  ];
+  const texts = [
+    state.act1Clues[0] ? "Clara Hayes, 22 — American exchange student studying 19th-century painting at the École du Louvre." : "Listen to Tape 01 to learn her name and why she came to Paris.",
+    state.act1Clues[1] ? "Visited Café de Flore on Blvd Saint-Germain with her friend Sophie from the Louvre seminar." : "Listen to Tape 02 to hear about her friend and favorite cafés.",
+    state.act1Clues[2] ? "Liked Julien, a student from the architecture library; planned to meet him near Pont Royal." : "Listen further on Tape 02 to find out who she was meeting.",
+    state.act1Clues[3] ? "Nov 14, 1984, 12:15 AM — heard a knock at her door, went to check the latch, and the tape cut off." : "Listen to Tape 03 to uncover her last entry—and what else was in the box."
+  ];
+  document.getElementById('notebookTitle').textContent = 'NOTEBOOK // ACT I: WHO WAS SHE IN 1984?';
+  const count = state.act1Clues.filter(Boolean).length;
+  document.getElementById('notebookProgress').textContent = `${count} / 4 CLUES LOGGED`;
+  const grid = document.getElementById('caseGrid');
+  grid.innerHTML = names.map((title, i) => `
+    <div class="case-card ${state.act1Clues[i] ? 'unlocked' : ''}" id="card${i}">
+      <div class="case-key">${title}</div>
+      <div class="case-val" id="clue${i}">${texts[i]}</div>
+    </div>
+  `).join('');
 }
 
 function setBand(b) {
@@ -1651,10 +1066,7 @@ function setBand(b) {
   document.querySelectorAll('[data-band]').forEach((el) => {
     el.classList.toggle('active', el.dataset.band === b);
   });
-  updateNoiseLayers();
-  if (state.tape === 6 && !state.endingDone) {
-    evaluateVierge();
-  }
+  onControlChange();
 }
 
 function setSpeed(sp) {
@@ -1662,28 +1074,18 @@ function setSpeed(sp) {
   document.querySelectorAll('[data-speed]').forEach((el) => {
     el.classList.toggle('active', el.dataset.speed === sp);
   });
-  updateNoiseLayers();
-
-  if (state.tape < 6 && state.playing && !state.choiceActive && !state.endingDone) {
-    const item = DIARY_TAPES[state.tape].entries[state.entry];
-    speakDiary(item.spoken, true);
-  } else if (state.tape === 6 && !state.endingDone) {
-    evaluateVierge();
-  }
+  onControlChange();
 }
 
 function toggleSparks() {
   state.sparks = !state.sparks;
   const btn = document.getElementById('sparksBtn');
-  btn.textContent = state.sparks ? 'SPARKS: ON' : 'SPARKS: OFF';
+  btn.textContent = state.sparks ? 'HISS GATE: ON' : 'HISS GATE: OFF';
   btn.classList.toggle('active-red', state.sparks);
-  updateNoiseLayers();
-  if (state.tape === 6 && !state.endingDone) {
-    evaluateVierge();
-  }
+  onControlChange();
 }
 
-function onSliderChange() {
+function onControlChange() {
   state.bass = parseFloat(document.getElementById('bass').value);
   state.treble = parseFloat(document.getElementById('treble').value);
   state.bias = parseFloat(document.getElementById('bias').value);
@@ -1692,320 +1094,196 @@ function onSliderChange() {
   document.getElementById('trebleVal').textContent = `${Math.round(state.treble * 100)}%`;
   document.getElementById('biasVal').textContent = `${Math.round(state.bias * 100)}%`;
 
-  updateNoiseLayers();
+  if (audioCtx && state.playing) {
+    const now = audioCtx.currentTime;
+    const baseFreq = state.band === 'AM' ? 1650 : state.band === 'SUB' ? 620 : 2100;
+    noiseFilter.frequency.setTargetAtTime(baseFreq + state.treble * 4200, now, 0.08);
+    noiseGain.gain.setTargetAtTime(0.025 + state.treble * 0.11, now, 0.08);
+    subOsc.frequency.setTargetAtTime(state.speed === '0.5' || state.tape === 3 ? 34 : 48 - state.bass * 12, now, 0.1);
+    subGain.gain.setTargetAtTime(0.02 + (state.sparks || state.tape === 3 ? 0.075 : 0.02), now, 0.1);
+  }
 
-  if (state.tape === 6 && !state.endingDone) {
-    evaluateVierge();
+  if (state.tape === 3) {
+    evaluateViergePuzzle();
   }
 }
 
-function renderRelistenBar() {
-  const bar = document.getElementById('relistenBar');
-  if (state.tape !== 6) {
-    bar.innerHTML = '';
-    return;
-  }
-
-  const buttons = VIERGE_STAGES.map((st, idx) => {
-    if (!state.viergeSolved[idx]) return '';
-    return `<button type="button" class="relisten-btn" onclick="relistenFragment(${idx})">Relisten: ${st.shortLabel}</button>`;
-  }).filter(Boolean);
-
-  bar.innerHTML = buttons.join('');
-}
-
-function relistenFragment(idx) {
-  ensureAudio();
-  state.playing = true;
-  state.activeReplayIdx = idx;
-  state.loopCycle = 0;
-  document.getElementById('playBtn').classList.add('active-play');
-  document.getElementById('stopBtn').classList.remove('active-stop');
-  document.getElementById('tapeStatus').textContent = `LOOPING // ${VIERGE_STAGES[idx].shortLabel.toUpperCase()}`;
-  updateNoiseLayers();
-
-  const st = VIERGE_STAGES[idx];
-  document.getElementById('tapeAudioBox').textContent = st.evidenceText;
-  document.getElementById('selfTalk').textContent = st.selfTalk;
-  playStruggleAudio(st.struggleType, st.cryIntensity);
-  if (st.hasHereHiss) playHereAsTapeHiss();
-  startLoopingEvidence(idx);
-}
-
-function evaluateVierge() {
-  if (state.tape !== 6 || state.endingDone) return;
+function evaluateViergePuzzle() {
+  if (state.tape !== 3) return;
   const stage = VIERGE_STAGES[state.viergeStep];
   const lockLed = document.getElementById('lockLed');
 
   if (stage.check(state)) {
-    lockLed.textContent = 'CLUE ISOLATED';
+    lockLed.textContent = 'VOICE LOCKED IN HISS';
     lockLed.classList.add('on');
 
     if (!state.viergeSolved[state.viergeStep]) {
-      const unlockedIdx = state.viergeStep;
-      state.viergeSolved[unlockedIdx] = true;
-      state.activeReplayIdx = unlockedIdx;
-      state.loopCycle = 0;
-      addFact(stage.fact, true);
-      renderRelistenBar();
-      renderScene(true, unlockedIdx, state.playing);
-
-      if (state.playing) {
-        startLoopingEvidence(unlockedIdx);
-      }
+      state.viergeSolved[state.viergeStep] = true;
+      switchNotebookToAct2();
+      renderCurrentScene(true);
 
       if (state.viergeStep < VIERGE_STAGES.length - 1) {
         state.viergeStep += 1;
         setTimeout(() => {
-          if (state.tape === 6 && !state.endingDone) {
-            document.getElementById('instructionStrip').textContent = VIERGE_STAGES[state.viergeStep].instruction;
-            lockLed.textContent = 'TUNE HISS';
+          if (state.tape === 3 && !state.endingChosen) {
+            document.getElementById('hintStrip').textContent = VIERGE_STAGES[state.viergeStep].hint;
+            lockLed.textContent = 'SCANNING NEXT HISS';
             lockLed.classList.remove('on');
-            evaluateVierge();
           }
-        }, 2200);
+        }, 2800);
       } else {
-        showEndingChoices();
+        renderFinalChoices();
       }
     }
   } else {
-    lockLed.textContent = state.viergeSolved[state.viergeStep] ? 'DECODED' : 'HISS / STATIC';
-    lockLed.classList.toggle('on', state.viergeSolved[state.viergeStep]);
+    lockLed.textContent = 'UNENCRYPTED STATIC';
+    lockLed.classList.remove('on');
   }
 }
 
 function selectTape(idx) {
   state.tape = idx;
   state.entry = 0;
-  state.choiceActive = false;
-  document.getElementById('choicesBox').innerHTML = '';
-
   document.querySelectorAll('.tape-btn').forEach((btn, i) => {
     btn.classList.toggle('active', i === idx);
   });
 
   const deck = document.getElementById('deck');
-  const strip = document.getElementById('instructionStrip');
   const nextBtn = document.getElementById('nextBtn');
-  const lockLed = document.getElementById('lockLed');
 
-  if (idx === 6) {
+  if (idx === 3) {
     deck.classList.add('act2');
-    strip.classList.add('puzzle-mode');
-    strip.textContent = VIERGE_STAGES[state.viergeStep].instruction;
+    switchNotebookToAct2();
+    document.getElementById('hintStrip').textContent = VIERGE_STAGES[state.viergeStep].hint;
     nextBtn.style.display = 'none';
-    lockLed.textContent = state.viergeSolved[state.viergeStep] ? 'DECODED' : 'HISS / STATIC';
-    renderRelistenBar();
   } else {
     deck.classList.remove('act2');
-    strip.classList.remove('puzzle-mode');
-    strip.textContent =
-      "DIARY MODE: Listen through the 1984 diary tapes using 'Next Entry >'. Changing SPEED alters Clara's voice speed and pitch; sliders and bands shape the background hum, hiss, and static.";
-    nextBtn.style.display = state.endingDone ? 'none' : 'inline-block';
-    lockLed.textContent = 'DIARY PLAYBACK';
-    lockLed.classList.remove('on');
-    document.getElementById('relistenBar').innerHTML = '';
+    switchNotebookToAct1();
+    document.getElementById('hintStrip').textContent =
+      "ACT I — Listen through Tapes 01, 02, and 03 (click 'Continue Listening >') to piece together who Clara was in 1984. Tweaking controls makes the room ambience darker.";
+    nextBtn.style.display = state.endingChosen ? 'none' : 'inline-block';
   }
 
-  state.counter = idx * 110;
+  state.counter = idx * 140;
   document.getElementById('counter').textContent = String(state.counter).padStart(3, '0');
-  renderScene(false, state.activeReplayIdx, state.playing);
-
-  if (idx === 6 && !state.endingDone) {
-    evaluateVierge();
-  }
-
-  if (state.playing && idx === 6) {
-    startLoopingEvidence(state.activeReplayIdx);
-  } else {
-    clearInterval(loopTimer);
-  }
+  renderCurrentScene(false);
 }
 
-function renderScene(justUnlocked, replayIdx, shouldSpeak) {
-  const box = document.getElementById('tapeAudioBox');
+function renderCurrentScene(justUnlocked) {
+  const tBox = document.getElementById('transcriptBox');
   const speaker = document.getElementById('speakerTag');
-  const selfTalk = document.getElementById('selfTalk');
+  const vnText = document.getElementById('vnText');
   const prog = document.getElementById('progressTag');
 
-  if (state.tape < 6) {
+  if (state.tape < 3) {
     const tape = DIARY_TAPES[state.tape];
     const item = tape.entries[state.entry];
-    box.classList.remove('vierge-evidence');
-    box.textContent = `"${item.display}"`;
-    speaker.textContent = 'YOU (TALKING TO YOURSELF)';
-    selfTalk.textContent = item.selfTalk;
-    prog.textContent = `${tape.name} — ENTRY ${state.entry + 1} / ${tape.entries.length}`;
+    tBox.classList.remove('hiss-voice');
+    tBox.innerHTML = `<strong>[${tape.name} — CLARA'S DIARY]:</strong> "${item.audioText}"`;
+    speaker.textContent = 'YOU (LISTENING IN YOUR FLAT)';
+    vnText.textContent = item.thought;
+    prog.textContent = `ENTRY ${state.entry + 1} / ${tape.entries.length} — ${tape.name}`;
 
-    addFact(item.fact, item.isDarkFact);
-
-    if (shouldSpeak && state.playing) {
-      speakDiary(item.spoken, false);
+    if (item.unlock) item.unlock();
+    if (state.playing) {
+      if (item.laugh) playUncannyBurst(false);
+      speakLine(item.spoken, false);
     }
   } else {
-    const idx = typeof replayIdx === 'number' && state.viergeSolved[replayIdx]
-      ? replayIdx
-      : (justUnlocked ? state.viergeStep : Math.min(VIERGE_STAGES.length - 1, state.viergeStep));
+    const idx = justUnlocked ? state.viergeStep : Math.max(0, state.viergeStep - (state.viergeSolved[state.viergeStep] ? 0 : 0));
     const st = VIERGE_STAGES[idx];
     const unlocked = state.viergeSolved[idx];
-    box.classList.add('vierge-evidence');
+    tBox.classList.add('hiss-voice');
 
     if (unlocked || justUnlocked) {
-      box.textContent = st.evidenceText;
-      speaker.textContent = 'YOU (SHAKEN IN THE DARK FLAT)';
-      selfTalk.textContent = st.selfTalk;
-      if (shouldSpeak && state.playing) {
-        playStruggleAudio(st.struggleType, st.cryIntensity);
-        if (st.hasHereHiss) playHereAsTapeHiss();
+      tBox.innerHTML = `<strong>[${st.title} // DECRYPTED FROM HISS]:</strong> "${st.hissWords}"`;
+      speaker.textContent = 'YOU (VOICE SHAKING)';
+      vnText.textContent = st.thought;
+      if (state.playing) {
+        playUncannyBurst(true);
+        speakLine(st.spoken, true);
       }
     } else {
-      box.textContent =
-        "[CASSETTE VIERGE // HISS] [heavy slow breath] ... [faint noise & static] ... follow the instruction above to pull the clue out of the hiss...";
-      speaker.textContent = 'YOU (LISTENING TO THE BLANK TAPE)';
-      selfTalk.textContent =
-        "Heavy breathing and faint apartment noises sit inside the hiss. Tweaking the controls pulls clues out of the noise.";
-      if (state.playing) {
-        playStruggleAudio('slam', 0);
-      }
+      tBox.innerHTML = `<strong>[CASSETTE VIERGE // RAW HISS]:</strong> "...ssshhh-hhh... [unintelligible breath and scraping inside static]... adjust deck controls to isolate words..."`;
+      speaker.textContent = 'YOU (STARING AT THE BLANK TAPE)';
+      vnText.textContent = "There's no voice diary here—just thick, rhythmic static that rises and falls like someone crying behind a closed wall.";
+      if (state.playing) playUncannyBurst(true);
     }
-
     const solvedCount = state.viergeSolved.filter(Boolean).length;
-    prog.textContent = `CASSETTE VIERGE — ${solvedCount} / 4 CLUES DECRYPTED`;
+    prog.textContent = `FRAGMENT ${solvedCount} / 4 — CASSETTE VIERGE`;
   }
 }
 
-function advanceScene() {
-  if (state.tape >= 6 || state.endingDone || state.choiceActive) return;
+function advanceEntry() {
+  if (state.tape >= 3 || state.endingChosen) return;
   const tape = DIARY_TAPES[state.tape];
   if (state.entry < tape.entries.length - 1) {
     state.entry += 1;
-    renderScene(false, state.activeReplayIdx, state.playing);
-  } else if (state.tape < 5) {
+    renderCurrentScene(false);
+  } else if (state.tape < 2) {
     selectTape(state.tape + 1);
-  } else if (tape.choiceAfter) {
-    state.choiceActive = true;
-    document.getElementById('nextBtn').style.display = 'none';
-    document.getElementById('speakerTag').textContent = 'YOU (PAUSE BEFORE THE BLANK TAPE)';
-    document.getElementById('selfTalk').textContent = tape.choiceAfter.prompt;
-    const cBox = document.getElementById('choicesBox');
-    cBox.innerHTML = '';
-    tape.choiceAfter.options.forEach((opt) => {
-      const btn = document.createElement('button');
-      btn.type = 'button';
-      btn.className = 'choice-btn';
-      btn.textContent = opt.label;
-      btn.onclick = () => {
-        if (opt.scare) triggerJumpscare(opt.scareWord);
-        opt.action();
-      };
-      cBox.appendChild(btn);
-    });
   }
 }
 
-function showEndingChoices() {
-  state.choiceActive = true;
-  state.endingActive = true;
-  updateNoiseLayers();
-  document.getElementById('speakerTag').textContent = 'YOU (BY THE WARDROBE — HEAVY HUM IN THE ROOM)';
-  document.getElementById('selfTalk').textContent =
-    "A heavy low hum fills the room behind the wardrobe. The distant hiss of 'I am here' feels trapped inside the wall. What do you do?";
+function renderFinalChoices() {
+  const box = document.getElementById('choicesBox');
+  document.getElementById('speakerTag').textContent = 'FINAL CHOICE — BEHIND THE WARDROBE';
+  document.getElementById('vnText').textContent =
+    "All four hiss fragments point to the exact same spot: the built-in wooden wardrobe three feet from your bed. The air in the room feels dead still.";
 
-  document.getElementById('choicesBox').innerHTML = `
-    <button type="button" class="choice-btn" onclick="chooseEnding('pry')">
-      1. [BREAK INTO THE WALL BEHIND THE WARDROBE] Use a heavy tool to pry open the plaster and wood.
+  box.innerHTML = `
+    <button type="button" class="choice-btn" onclick="triggerEnding(1)">
+      1. [PRY OPEN THE WARDROBE BACK PANEL] Break through the painted plaster to bring Clara out after forty-two years.
     </button>
-    <button type="button" class="choice-btn" onclick="chooseEnding('escape')">
-      2. [RUN OUT INTO THE NIGHT] Leave the apartment and hurry down the stairs.
+    <button type="button" class="choice-btn" onclick="triggerEnding(2)">
+      2. [TAKE THE TAPES & CALL THE POLICE FROM THE STREET] Leave the flat immediately with the shoebox as evidence.
+    </button>
+    <button type="button" class="choice-btn" onclick="triggerEnding(3)">
+      3. [PRESS RECORD ON THE BLANK TAPE] Ask aloud if anyone else is still inside the wall.
     </button>
   `;
 }
 
-function chooseEnding(which) {
-  state.endingDone = true;
-  state.choiceActive = false;
-  state.endingActive = true;
-  state.playing = false;
-  clearInterval(loopTimer);
-  clearTimeout(speechTimer);
-  try {
-    if ('speechSynthesis' in window) window.speechSynthesis.cancel();
-  } catch (e) {}
-  updateNoiseLayers();
+function triggerEnding(num) {
+  state.endingChosen = true;
+  stopDeck();
+  const box = document.getElementById('choicesBox');
+  const speaker = document.getElementById('speakerTag');
+  const text = document.getElementById('vnText');
+  const tBox = document.getElementById('transcriptBox');
 
-  const endScreen = document.getElementById('endingScreen');
-  const endTag = document.getElementById('endingTag');
-  const endTitle = document.getElementById('endingTitle');
-  const endCue = document.getElementById('endingCue');
-  const endBody = document.getElementById('endingBody');
-
-  if (which === 'pry') {
-    triggerJumpscare("LOOKING RIGHT AT YOU");
-    endTag.textContent = 'ENDING I // INSIDE THE BROKEN WALL';
-    endTitle.textContent = 'WHAT WAITED BEHIND THE PLASTER';
-    endCue.textContent = '[HEAVY HUM] [distant female crying, cut] [tape hiss]: ~i a m h e r e~';
-    endBody.textContent =
-      "You wedge a heavy metal bar into the seam behind the wardrobe and lever the wood and old plaster apart until the wall breaks open. At first there is only pitch darkness inside. Then your eyes slowly adapt to the dark: a vague form takes shape, then a patch of faded, colorful cloth, then a human silhouette, and finally a skeleton facing straight in your direction. Your body freezes.";
+  if (num === 1) {
+    speaker.textContent = 'ENDING I // THE PLASTER GIVES WAY';
+    tBox.innerHTML = `<strong>[FINAL HISS]:</strong> "...thank you... you found me..."`;
+    text.textContent =
+      "Using a flat crowbar from your moving boxes, you lever off the false wooden back of the wardrobe. Behind the crumbling 1984 plaster lies a narrow brick recess—and a faded American university sweater beside a small silver locket. For the first time since you moved in, the sixth-floor flat feels warm.";
+  } else if (num === 2) {
+    speaker.textContent = 'ENDING II // RUE DU BAC, DAWN';
+    tBox.innerHTML = `<strong>[TAPE EJECTED]:</strong> The reels stop spinning.`;
+    text.textContent =
+      "You pocket all four cassettes, lock the apartment behind you, and walk down the five flights into the cold Paris morning. By noon, forensic officers are opening the wardrobe wall—and Monsieur Garnier, the elderly landlord, never returns to collect the rent.";
   } else {
-    triggerJumpscare("FOLLOWING DOWN THE STAIRS");
-    endTag.textContent = 'ENDING II // RUNNING IN THE NIGHT';
-    endTitle.textContent = 'A GENTLE VOICE FROM THE FLAT';
-    endCue.textContent = '[HEAVY HUM] [gentle English voice from inside the flat]: "Come back, don\'t leave me here, wait for me."';
-    endBody.textContent =
-      "You throw the apartment door open and run out into the cold night, taking the stairs two at a time as the heavy hum stays behind you. From inside the flat you just left, a gentle female voice in English calls out softly as if wanting to follow you down the stairs.";
-    speakGentleVoiceCallingFromFlat();
+    speaker.textContent = 'ENDING III // SIDE B';
+    tBox.innerHTML = `<strong>[RECORDING]:</strong> "...hhh-ssshhh... another voice on the tape..."`;
+    text.textContent =
+      "You press RECORD on the cassette vierge and whisper toward the plaster. When you play it back ten seconds later, your own voice answers—followed by Clara's small, breathless laugh, and the sound of heavy footsteps climbing the stairs outside your door.";
   }
 
-  endScreen.classList.add('visible');
-}
-
-function silenceHumOnly() {
-  state.endingActive = false;
-  state.playing = false;
-  clearTimeout(speechTimer);
-  try {
-    if ('speechSynthesis' in window) window.speechSynthesis.cancel();
-  } catch (e) {}
-  updateNoiseLayers();
-  document.getElementById('endingCue').textContent = '[AUDIO SILENCED]';
-}
-
-function silenceAndReload() {
-  state.endingActive = false;
-  state.playing = false;
-  updateNoiseLayers();
-  location.reload();
-}
-
-function startLoopingEvidence(idx) {
-  clearInterval(loopTimer);
-  loopTimer = setInterval(() => {
-    if (state.playing && state.tape === 6 && !state.endingDone) {
-      state.loopCycle = (state.loopCycle + 1) % 1000;
-      const targetIdx = state.viergeSolved[idx] ? idx : state.viergeStep;
-      const st = VIERGE_STAGES[targetIdx];
-      playStruggleAudio(st.struggleType, st.cryIntensity);
-      if (st.hasHereHiss) {
-        playHereAsTapeHiss();
-      }
-    }
-  }, 4600);
+  box.innerHTML = `
+    <button type="button" class="choice-btn" onclick="location.reload()">
+      [START OVER]
+    </button>
+  `;
 }
 
 function playDeck() {
   ensureAudio();
-  primeSpeechEngine();
   state.playing = true;
-  state.loopCycle = 0;
   document.getElementById('playBtn').classList.add('active-play');
   document.getElementById('stopBtn').classList.remove('active-stop');
-  document.getElementById('tapeStatus').textContent = 'PLAYING // TAPE RUNNING';
-  updateNoiseLayers();
-  renderScene(false, state.activeReplayIdx, true);
-
-  if (state.tape === 6 && !state.endingDone) {
-    evaluateVierge();
-  }
+  document.getElementById('tapeStatus').textContent = 'PLAYING // HEADS ENGAGED';
+  onControlChange();
+  renderCurrentScene(false);
 
   clearInterval(uiTimer);
   uiTimer = setInterval(() => {
@@ -2020,39 +1298,43 @@ function playDeck() {
       document.getElementById('counter').textContent = String(state.counter).padStart(3, '0');
     }
 
-    const boost = state.tape === 6 || state.sparks || state.endingActive ? 40 : 14;
-    document.getElementById('vuL').style.width = `${14 + Math.random() * (46 + boost)}%`;
-    document.getElementById('vuR').style.width = `${14 + Math.random() * (50 + boost)}%`;
+    const boost = state.tape === 3 || state.sparks ? 38 : 14;
+    document.getElementById('vuL').style.width = `${12 + Math.random() * (46 + boost)}%`;
+    document.getElementById('vuR').style.width = `${12 + Math.random() * (50 + boost)}%`;
   }, 110);
 
-  if (state.tape === 6) {
-    startLoopingEvidence(state.activeReplayIdx);
-  }
+  clearInterval(ambientTimer);
+  ambientTimer = setInterval(() => {
+    if (state.playing && state.tape === 3) {
+      playUncannyBurst(true);
+    }
+  }, 4800);
 }
 
 function stopDeck() {
   state.playing = false;
   clearInterval(uiTimer);
-  clearInterval(loopTimer);
-  clearTimeout(speechTimer);
-  try {
-    if ('speechSynthesis' in window) window.speechSynthesis.cancel();
-  } catch (e) {}
-  updateNoiseLayers();
+  clearInterval(ambientTimer);
+  if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+  if (audioCtx && noiseGain && subGain) {
+    const now = audioCtx.currentTime;
+    noiseGain.gain.setTargetAtTime(0.0001, now, 0.06);
+    subGain.gain.setTargetAtTime(0.0001, now, 0.06);
+  }
   document.getElementById('playBtn').classList.remove('active-play');
   document.getElementById('stopBtn').classList.add('active-stop');
-  document.getElementById('tapeStatus').textContent = state.endingActive ? 'HUM ACTIVE // ENDING' : 'STOPPED // TAPE HELD';
-  if (!state.endingActive) {
-    document.getElementById('vuL').style.width = '10%';
-    document.getElementById('vuR').style.width = '10%';
-  }
+  document.getElementById('tapeStatus').textContent = 'STOPPED // TAPE HELD';
+  document.getElementById('vuL').style.width = '10%';
+  document.getElementById('vuR').style.width = '10%';
 }
 
 function rewindDeck() {
   stopDeck();
-  state.counter = state.tape * 110;
+  state.counter = state.tape * 140;
   document.getElementById('counter').textContent = String(state.counter).padStart(3, '0');
 }
+
+selectTape(0);
 </script>
 </body>
 </html>
